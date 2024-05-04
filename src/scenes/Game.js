@@ -7,11 +7,13 @@ export class Game extends Scene
     constructor ()
     {
         super('Game');
+        this.cursor
+        this.playerSpeed = 60
     }
 
     create ()
     {
-        //this.scene.physics.world.fixedStep = false
+        
         this.player = this.physics.add.sprite(600,400,"player")
         this.player.body.setAllowGravity(false)
         this.player.depth = 5
@@ -19,7 +21,8 @@ export class Game extends Scene
         this.player.setSize(48,30)
         this.player.body.setOffset(24,93)
 
-        this.cameras.main.startFollow(this.player, false)
+        this.cameraDolly = new Phaser.Geom.Point(this.player.x, this.player.y);
+        this.cameras.main.startFollow(this.cameraDolly)
         this.cameras.main.setBounds(0,0,2000,2000)
         
         /*this.input.on("pointerup", (pointer) => {
@@ -27,7 +30,7 @@ export class Game extends Scene
             this.movePlayerAlongPath(path)
         })*/
 
-        this.target = new Vector2()
+        /*this.target = new Vector2()
         this.input.on("pointerup", (pointer) => {
 
             const {worldX, worldY} = pointer
@@ -35,7 +38,7 @@ export class Game extends Scene
             this.target.y = worldY
 
             this.physics.moveToObject(this.player, this.target, 60)
-        })
+        })*/
 
         //this.cameras.main.setBounds(0,0,1920,1980)
 
@@ -59,9 +62,9 @@ export class Game extends Scene
         const secondLayer = map.createLayer("lowerWalls", lowWallTileset)
         secondLayer.depth = 1
         const thirdLayer = map.createLayer("upperWalls", highWallTileset)
-        thirdLayer.depth = 4
+        thirdLayer.depth = 3
         const fourthLayer = map.createLayer("objects", objectTileset)
-        fourthLayer.depth = 3
+        fourthLayer.depth = 2
 
         firstLayer.setCollisionByProperty({ collides: true })
         secondLayer.setCollisionByProperty({ collides: true })
@@ -74,6 +77,10 @@ export class Game extends Scene
             thirdLayer,
             fourthLayer
         ])
+
+
+        this.cursor = this.input.keyboard.createCursorKeys();
+        
 
         /*const debugGraphics = this.add.graphics().setAlpha(0.7)
         secondLayer.renderDebug(debugGraphics, {
@@ -119,13 +126,37 @@ export class Game extends Scene
     }*/
 
     update() {
-        if(this.player.body.speed > 0) {
+
+        this.cameraDolly.x = Math.floor(this.player.x);
+        this.cameraDolly.y = Math.floor(this.player.y);
+
+        /*if(this.player.body.speed > 0) {
             const d = Phaser.Math.Distance.Between(this.player.x, this.player.y, this.target.x, this.target.y)
         
 
         if(d < 4) {
             this.player.body.reset(this.target.x, this.target.y)
         }
+      }*/
+
+      const { left, right, up, down } = this.cursor;
+      
+      if (left.isDown) {
+        this.player.setVelocityX(-this.playerSpeed);
+        this.player.flipX = true
+      } else if (right.isDown) {
+        this.player.setVelocityX(this.playerSpeed);
+        this.player.flipX = false
+      } else {
+        this.player.setVelocityX(0);
+      }
+  
+      if (up.isDown) {
+        this.player.setVelocityY(-this.playerSpeed);
+      } else if (down.isDown) {
+        this.player.setVelocityY(this.playerSpeed);
+      } else {
+        this.player.setVelocityY(0);
       }
     }
 }

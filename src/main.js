@@ -16,10 +16,9 @@ const config = {
     parent: 'game-container',
     //backgroundColor: '#028af8',
     pixelArt: true,
+    fixedStep: false,
     
-    fps: {
-        limit: 60
-    },
+    fps: 300,
 
     scale: {
         mode: Phaser.Scale.FIT,
