@@ -9,21 +9,31 @@ export class Game extends Scene
         super('Game');
         this.cursor
         this.playerSpeed = 60
+        
     }
 
     create ()
-    {
-        
+    {   
+        this.lights.enable().setAmbientColor(0x797979)
+        //this.testLight = this.lights.addLight(600, 400, 800)
+        //this.testLight.intensity = 1.5
+        //this.testLight.depth = 10
+
+
         this.player = this.physics.add.sprite(600,400,"player")
         this.player.body.setAllowGravity(false)
+        
         this.player.depth = 5
         this.player.scale = 0.8
         this.player.setSize(48,30)
         this.player.body.setOffset(24,93)
+        this.player.setPipeline("Light2D")
 
-        this.cameraDolly = new Phaser.Geom.Point(this.player.x, this.player.y);
-        this.cameras.main.startFollow(this.cameraDolly)
+        
+        this.cameras.main.startFollow(this.player, true, 0.02,0.02)
         this.cameras.main.setBounds(0,0,2000,2000)
+
+        
         
         /*this.input.on("pointerup", (pointer) => {
             const path = this.calculatePath(this.player, pointer)
@@ -52,18 +62,19 @@ export class Game extends Scene
         //this.img.depth = 5
 
         const map = this.make.tilemap({ key: "demomap" })
+        
         const floorTileset = map.addTilesetImage("floor", "floorTiles2")
         const lowWallTileset = map.addTilesetImage("lowWalls", "lowWallTiles")
         const highWallTileset = map.addTilesetImage("walls", "highWallTiles")
         const objectTileset = map.addTilesetImage("objects", "objectTiles")
 
-        const firstLayer = map.createLayer("floor", floorTileset)
+        const firstLayer = map.createLayer("floor", floorTileset).setPipeline("Light2D")
         firstLayer.depth = 0
-        const secondLayer = map.createLayer("lowerWalls", lowWallTileset)
+        const secondLayer = map.createLayer("lowerWalls", lowWallTileset).setPipeline("Light2D")
         secondLayer.depth = 1
-        const thirdLayer = map.createLayer("upperWalls", highWallTileset)
+        const thirdLayer = map.createLayer("upperWalls", highWallTileset).setPipeline("Light2D")
         thirdLayer.depth = 3
-        const fourthLayer = map.createLayer("objects", objectTileset)
+        const fourthLayer = map.createLayer("objects", objectTileset).setPipeline("Light2D")
         fourthLayer.depth = 2
 
         firstLayer.setCollisionByProperty({ collides: true })
@@ -127,8 +138,7 @@ export class Game extends Scene
 
     update() {
 
-        this.cameraDolly.x = Math.floor(this.player.x);
-        this.cameraDolly.y = Math.floor(this.player.y);
+        
 
         /*if(this.player.body.speed > 0) {
             const d = Phaser.Math.Distance.Between(this.player.x, this.player.y, this.target.x, this.target.y)
@@ -158,5 +168,15 @@ export class Game extends Scene
       } else {
         this.player.setVelocityY(0);
       }
-    }
+
+      this.player.x = Math.round(this.player.x)
+      this.player.y = Math.round(this.player.y)
+
+      
+    
+    
+      
+      
+    } 
+        
 }
