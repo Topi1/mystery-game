@@ -4,6 +4,7 @@ import { Game } from './scenes/Game';
 import { GameOver } from './scenes/GameOver';
 import { MainMenu } from './scenes/MainMenu';
 import { Preloader } from './scenes/Preloader';
+import  PhaserNavMeshPlugin  from "phaser-navmesh"
 
 
 
@@ -20,12 +21,25 @@ const config = {
     
     fps: 300,
 
+    plugins: {
+        scene: [
+          {
+            key: "PhaserNavMeshPlugin", // Key to store the plugin class under in cache
+            plugin: PhaserNavMeshPlugin, // Class that constructs plugins
+            mapping: "navMeshPlugin", // Property mapping to use for the scene, e.g. this.navMeshPlugin
+            start: true
+          }
+        ]
+      },
+
     scale: {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
         
     },
+    
     scene: [
+    
         Boot,
         Preloader,
         MainMenu,
@@ -37,7 +51,7 @@ const config = {
         default: "arcade",
         arcade: {
             gravity: 0,
-            //debug: true,
+            debug: true,
             fixedStep: false
         },
         
