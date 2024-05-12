@@ -44,7 +44,7 @@ export class Preloader extends Scene
 
         this.load.tilemapTiledJSON("demomap", "demo")
 
-        this.load.image("player", "dude.png")
+        this.load.atlas("player", "detective.png", "detective.json")
     }
 
     create ()

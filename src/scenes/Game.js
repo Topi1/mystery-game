@@ -20,10 +20,26 @@ export class Game extends Scene {
         this.player = this.physics.add.sprite(600, 400, "player");
         this.player.body.setAllowGravity(false);
         this.player.depth = 5;
-        this.player.scale = 0.8;
+        this.player.scale = 1;
         this.player.setSize(48, 30);
-        this.player.body.setOffset(24, 93);
+        this.player.body.setOffset(0, 60);
         this.player.setPipeline("Light2D");
+
+
+        this.anims.create({
+            key: 'walk',
+            frames: this.anims.generateFrameNames('player', {
+                prefix: 'detective ',
+                suffix: '.aseprite',
+                start: 3,
+                end: 10,
+                zeroPad: 1 // Ensure the frame numbers are correctly formatted (if necessary)
+            }),
+            frameRate: 6,
+            repeat: -1
+        });
+
+        //this.player.anims.play("walk")
 
         this.cameras.main.startFollow(this.player, true, 1, 1);
         this.cameras.main.setBounds(0, 0, 2000, 2000);
@@ -101,6 +117,9 @@ export class Game extends Scene {
     }
 
     moveToNextPoint() {
+
+        this.player.anims.play("walk")
+
         if (this.currentPathIndex < this.currentPath.length) {
             this.targetPosition = this.currentPath[this.currentPathIndex];
             this.physics.moveToObject(this.player, this.targetPosition, this.playerSpeed);
@@ -112,6 +131,8 @@ export class Game extends Scene {
         } else {
             this.targetPosition = null;
             this.player.body.setVelocity(0, 0);
+            this.player.anims.stop("walk")
+            this.player.setFrame(0)
         }
     }
 
@@ -121,12 +142,13 @@ export class Game extends Scene {
         camera.scrollX = Phaser.Math.Linear(camera.scrollX, this.player.x - camera.width / 2, cameraLerpSpeed);
         camera.scrollY = Phaser.Math.Linear(camera.scrollY, this.player.y - camera.height / 2, cameraLerpSpeed); */
 
-        this.player.body.setOffset(24, 93)
+        //this.player.body.setOffset(24, 93)
         if (this.targetPosition) {
             const distance = Phaser.Math.Distance.Between(this.player.x, this.player.y, this.targetPosition.x, this.targetPosition.y);
-
+            
             if (distance < 4) {
                 //this.player.body.reset(this.targetPosition.x, this.targetPosition.y);
+                
                 this.moveToNextPoint();
             }
         }
