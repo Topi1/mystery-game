@@ -21,8 +21,8 @@ export class Game extends Scene {
         this.player.body.setAllowGravity(false);
         this.player.depth = 5;
         this.player.scale = 1;
-        this.player.setSize(48, 30);
-        this.player.body.setOffset(0, 60);
+        this.player.setSize(40, 25);
+        this.player.body.setOffset(5, 70);
         this.player.setPipeline("Light2D");
 
 
@@ -31,15 +31,28 @@ export class Game extends Scene {
             frames: this.anims.generateFrameNames('player', {
                 prefix: 'detective ',
                 suffix: '.aseprite',
-                start: 3,
-                end: 10,
+                start: 9,
+                end: 16,
                 zeroPad: 1 // Ensure the frame numbers are correctly formatted (if necessary)
             }),
             frameRate: 6,
             repeat: -1
         });
 
-        //this.player.anims.play("walk")
+        this.anims.create({
+            key: 'walkDown',
+            frames: this.anims.generateFrameNames('player', {
+                prefix: 'detective ',
+                suffix: '.aseprite',
+                start: 1,
+                end: 8,
+                zeroPad: 1 // Ensure the frame numbers are correctly formatted (if necessary)
+            }),
+            frameRate: 6,
+            repeat: -1
+        });
+
+        //this.player.anims.play("walkDown")
 
         this.cameras.main.startFollow(this.player, true, 1, 1);
         this.cameras.main.setBounds(0, 0, 2000, 2000);
@@ -118,12 +131,19 @@ export class Game extends Scene {
 
     moveToNextPoint() {
 
-        this.player.anims.play("walk")
 
         if (this.currentPathIndex < this.currentPath.length) {
             this.targetPosition = this.currentPath[this.currentPathIndex];
             this.physics.moveToObject(this.player, this.targetPosition, this.playerSpeed);
 
+            const deltaX = Math.abs(this.targetPosition.x - this.player.x);
+            const deltaY = Math.abs(this.targetPosition.y - this.player.y);
+
+            if (deltaY > deltaX) {
+                this.player.anims.play("walkDown", true); // Make sure 'true' to smoothly handle animation transition
+            } else {
+                this.player.anims.play("walk", true);
+            }
             // Adjust player facing direction
             this.player.flipX = this.targetPosition.x < this.player.x;
 
