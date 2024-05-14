@@ -52,7 +52,20 @@ export class Game extends Scene {
             repeat: -1
         });
 
-        //this.player.anims.play("walkDown")
+        this.anims.create({
+            key: 'walkUp',
+            frames: this.anims.generateFrameNames('player', {
+                prefix: 'detective ',
+                suffix: '.aseprite',
+                start: 17,
+                end: 24,
+                zeroPad: 1 // Ensure the frame numbers are correctly formatted (if necessary)
+            }),
+            frameRate: 6,
+            repeat: -1
+        });
+
+        
 
         this.cameras.main.startFollow(this.player, true, 1, 1);
         this.cameras.main.setBounds(0, 0, 2000, 2000);
@@ -138,12 +151,21 @@ export class Game extends Scene {
 
             const deltaX = Math.abs(this.targetPosition.x - this.player.x);
             const deltaY = Math.abs(this.targetPosition.y - this.player.y);
+            //console.log(`DeltaX: ${deltaX}, DeltaY: ${deltaY}`)
 
-            if (deltaY > deltaX) {
-                this.player.anims.play("walkDown", true); // Make sure 'true' to smoothly handle animation transition
-            } else {
-                this.player.anims.play("walk", true);
+            
+            
+        if (deltaY > deltaX) {
+            if (this.player.y < this.targetPosition.y) {
+                this.player.anims.play("walkDown", true); // Moving downwards
+            } else if (this.player.y > this.targetPosition.y){
+                this.player.anims.play("walkUp", true); // Moving upwards
+                console.log("Playing walkUp Animation")
             }
+        } else {
+            this.player.anims.play("walk", true); // Horizontal movement, use the default walk animation
+        }
+
             // Adjust player facing direction
             this.player.flipX = this.targetPosition.x < this.player.x;
 
