@@ -16,14 +16,14 @@ export class TopiJ extends Scene
         this.anims.create({
             key: 'logoAnim',
             frames: this.anims.generateFrameNames('TJlogo', {
-                prefix: 'TJGamesLogo ',
+                prefix: 'TopiJLogo ',
                 suffix: '.aseprite',
                 start: 0,
-                end: 4,
+                end: 13,
                 zeroPad: 1 // Ensure the frame numbers are correctly formatted (if necessary)
             }),
-            frameRate: 0.8,
-            repeat: 0
+            frameRate: 1.5,
+            repeat: -1
         });
 
         this.myLogo.anims.play("logoAnim")
