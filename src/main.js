@@ -2,6 +2,7 @@ import { Physics } from 'phaser';
 import { Boot } from './scenes/Boot';
 import { Game } from './scenes/Game';
 import { GameOver } from './scenes/GameOver';
+import { TopiJ } from './scenes/TopiJ';
 import { MainMenu } from './scenes/MainMenu';
 import { Preloader } from './scenes/Preloader';
 import  PhaserNavMeshPlugin  from "phaser-navmesh"
@@ -42,6 +43,7 @@ const config = {
     
         Boot,
         Preloader,
+        TopiJ,
         MainMenu,
         Game,
         GameOver

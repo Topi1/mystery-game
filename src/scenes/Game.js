@@ -25,6 +25,8 @@ export class Game extends Scene {
         this.player.body.setOffset(5, 70);
         this.player.setPipeline("Light2D");
 
+        this.player.postFX.addShadow(0,0,0.06,1)
+
 
         this.anims.create({
             key: 'walk',
