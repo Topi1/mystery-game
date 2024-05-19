@@ -32,7 +32,7 @@ export class Preloader extends Scene
         //  Load the assets for the game - Replace with your own assets
         this.load.setPath('assets');
 
-        this.load.atlas("TJlogo", "TopiJLogo.png", "TopiJLogo.json")
+        this.load.atlas("TJlogo", "TopiLogo.png", "TopiLogo.json")
 
         this.load.image('logo', 'logo.png');
         this.load.image('logo2', 'logo2.png')
