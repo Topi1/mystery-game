@@ -32,7 +32,12 @@ export class Preloader extends Scene
         //  Load the assets for the game - Replace with your own assets
         this.load.setPath('assets');
 
+
+        //FONTS
         this.load.bitmapFont('baseFont', 'fonts/pixelFont_0.png', 'fonts/pixelFont.fnt')
+
+        //AUDIO
+        this.load.audio("introSong", "audio/introSong.mp3")
 
         this.load.atlas("TJlogo", "TopiLogo.png", "TopiLogo.json")
 
@@ -56,6 +61,8 @@ export class Preloader extends Scene
     {
         //  When all the assets have loaded, it's often worth creating global objects here that the rest of the game can use.
         //  For example, you can define global animations here, so we can use them in other scenes.
+
+        
 
         //  Move to the MainMenu. You could also swap this for a Scene Transition, such as a camera fade.
         this.scene.start('Warning');

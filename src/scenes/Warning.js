@@ -11,15 +11,18 @@ export class WarningStart extends Scene
     {
         
 
-        this.warningText = this.add.bitmapText(320, 60, "baseFont", "This game is for adult audience. ", 32).setOrigin(0.5,0.5)
+        this.warningText = this.add.bitmapText(320, 60, "baseFont", "THIS GAME IS FOR ADULT AUDIENCE ", 32).setOrigin(0.5,0.5)
         this.warningText.setTint(0xff0000)
 
-        this.warningInfo = this.add.bitmapText(320, 180, "baseFont", "Includes:\n\n- horror\n- strong language\n- alcohol\n- blood ", 24).setOrigin(0.5,0.5)
+        this.warningInfo = this.add.bitmapText(320, 180, "baseFont", "CONTAINS:\n\n- HORROR\n- STRONG LANGUAGE\n- ALCOHOL\n- BLOOD ", 24).setOrigin(0.5,0.5)
         
         
-        const button = this.add.bitmapText(320, 300, "baseFont", "GOT IT, START THE GAME", 32).setOrigin(0.5,0.5)
-        .setInteractive({ useHandCursor: true })  // Makes the text use a hand cursor on hover
-        .on('pointerdown', () => this.scene.start('TopiJ'));  // Changes to Scene2 on click
+        this.button = this.add.bitmapText(320, 300, "baseFont", "GOT IT, START THE GAME", 32).setOrigin(0.5,0.5)
+        .setInteractive({ useHandCursor: true })
+        .on('pointerdown', () => this.scene.start('TopiJ'))
+        this.button.setTint(0x00ff00)
+
+
 
         //button.on('pointerover', () => button.setStyle({ fill: '#ff0'}));
         //button.on('pointerout', () => button.setStyle({ fill: '#0f0'}));

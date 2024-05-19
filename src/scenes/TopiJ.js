@@ -9,20 +9,15 @@ export class TopiJ extends Scene
 
     create ()
     {
-        
+        //AUDIO
+        this.introSong = this.sound.add("introSong")
+        this.introSong.play()
+
+        this.topiText = this.add.bitmapText(80, 15, "baseFont", "Topi Jarvinen 2024", 16).setOrigin(0.5,0.5)
 
         this.myLogo = this.add.sprite(320, 170, 'TJlogo').setOrigin(0.5,0.5)
 
-        /*this.topiText = this.add.text(60, 20, 'Topi Järvinen 2024', {
-            fontSize: 12, color: '#dcdbdb',
-            fontFamily: "Times New Roman"
-            //stroke: '#000000', strokeThickness: 8,
-            
-        })
-        this.topiText.depth = 3 */
         
-        
-
         this.anims.create({
             key: 'logoAnim',
             frames: this.anims.generateFrameNames('TJlogo', {
