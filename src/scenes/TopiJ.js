@@ -38,10 +38,15 @@ export class TopiJ extends Scene
 
         this.myLogo.anims.play("logoAnim")
 
-        this.input.once('pointerdown', () => {
+        this.time.delayedCall(12300, () => {
+            this.scene.start('MainMenu');
+        }, [], this);
+    
+
+        /*this.input.once('pointerdown', () => {
 
             this.scene.start('MainMenu');
 
-        });
+        }); */
     }
 }

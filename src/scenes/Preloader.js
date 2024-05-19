@@ -32,6 +32,8 @@ export class Preloader extends Scene
         //  Load the assets for the game - Replace with your own assets
         this.load.setPath('assets');
 
+        this.load.bitmapFont('baseFont', 'fonts/pixelFont_0.png', 'fonts/pixelFont.fnt')
+
         this.load.atlas("TJlogo", "TopiLogo.png", "TopiLogo.json")
 
         this.load.image('logo', 'logo.png');
@@ -56,6 +58,6 @@ export class Preloader extends Scene
         //  For example, you can define global animations here, so we can use them in other scenes.
 
         //  Move to the MainMenu. You could also swap this for a Scene Transition, such as a camera fade.
-        this.scene.start('TopiJ');
+        this.scene.start('Warning');
     }
 }

@@ -19,6 +19,9 @@ export class MainMenu extends Scene
             align: 'center'
         }).setOrigin(0.5);
 
+        this.startText = this.add.bitmapText(320,330, "baseFont", "Press anywhere to start", 22).setOrigin(0.5,0.5)
+        //this.startText.setTint(0xff0000)
+
         this.input.once('pointerdown', () => {
 
             this.scene.start('Game');
