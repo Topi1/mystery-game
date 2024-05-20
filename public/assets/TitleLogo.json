@@ -1,0 +1,191 @@
+{ "frames": {
+   "TitleLogo 0.aseprite": {
+    "frame": { "x": 0, "y": 0, "w": 640, "h": 360 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
+    "sourceSize": { "w": 640, "h": 360 },
+    "duration": 100
+   },
+   "TitleLogo 1.aseprite": {
+    "frame": { "x": 640, "y": 0, "w": 640, "h": 360 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
+    "sourceSize": { "w": 640, "h": 360 },
+    "duration": 100
+   },
+   "TitleLogo 2.aseprite": {
+    "frame": { "x": 1280, "y": 0, "w": 640, "h": 360 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
+    "sourceSize": { "w": 640, "h": 360 },
+    "duration": 100
+   },
+   "TitleLogo 3.aseprite": {
+    "frame": { "x": 1920, "y": 0, "w": 640, "h": 360 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
+    "sourceSize": { "w": 640, "h": 360 },
+    "duration": 100
+   },
+   "TitleLogo 4.aseprite": {
+    "frame": { "x": 0, "y": 360, "w": 640, "h": 360 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
+    "sourceSize": { "w": 640, "h": 360 },
+    "duration": 100
+   },
+   "TitleLogo 5.aseprite": {
+    "frame": { "x": 640, "y": 360, "w": 640, "h": 360 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
+    "sourceSize": { "w": 640, "h": 360 },
+    "duration": 100
+   },
+   "TitleLogo 6.aseprite": {
+    "frame": { "x": 1280, "y": 360, "w": 640, "h": 360 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
+    "sourceSize": { "w": 640, "h": 360 },
+    "duration": 100
+   },
+   "TitleLogo 7.aseprite": {
+    "frame": { "x": 1920, "y": 360, "w": 640, "h": 360 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
+    "sourceSize": { "w": 640, "h": 360 },
+    "duration": 100
+   },
+   "TitleLogo 8.aseprite": {
+    "frame": { "x": 0, "y": 720, "w": 640, "h": 360 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
+    "sourceSize": { "w": 640, "h": 360 },
+    "duration": 100
+   },
+   "TitleLogo 9.aseprite": {
+    "frame": { "x": 640, "y": 720, "w": 640, "h": 360 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
+    "sourceSize": { "w": 640, "h": 360 },
+    "duration": 100
+   },
+   "TitleLogo 10.aseprite": {
+    "frame": { "x": 640, "y": 720, "w": 640, "h": 360 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
+    "sourceSize": { "w": 640, "h": 360 },
+    "duration": 100
+   },
+   "TitleLogo 11.aseprite": {
+    "frame": { "x": 1280, "y": 720, "w": 640, "h": 360 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
+    "sourceSize": { "w": 640, "h": 360 },
+    "duration": 100
+   },
+   "TitleLogo 12.aseprite": {
+    "frame": { "x": 1920, "y": 720, "w": 640, "h": 360 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
+    "sourceSize": { "w": 640, "h": 360 },
+    "duration": 100
+   },
+   "TitleLogo 13.aseprite": {
+    "frame": { "x": 0, "y": 1080, "w": 640, "h": 360 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
+    "sourceSize": { "w": 640, "h": 360 },
+    "duration": 100
+   },
+   "TitleLogo 14.aseprite": {
+    "frame": { "x": 1920, "y": 720, "w": 640, "h": 360 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
+    "sourceSize": { "w": 640, "h": 360 },
+    "duration": 100
+   },
+   "TitleLogo 15.aseprite": {
+    "frame": { "x": 1280, "y": 720, "w": 640, "h": 360 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
+    "sourceSize": { "w": 640, "h": 360 },
+    "duration": 100
+   },
+   "TitleLogo 16.aseprite": {
+    "frame": { "x": 640, "y": 1080, "w": 640, "h": 360 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
+    "sourceSize": { "w": 640, "h": 360 },
+    "duration": 100
+   },
+   "TitleLogo 17.aseprite": {
+    "frame": { "x": 1280, "y": 1080, "w": 640, "h": 360 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
+    "sourceSize": { "w": 640, "h": 360 },
+    "duration": 100
+   },
+   "TitleLogo 18.aseprite": {
+    "frame": { "x": 640, "y": 1080, "w": 640, "h": 360 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
+    "sourceSize": { "w": 640, "h": 360 },
+    "duration": 100
+   },
+   "TitleLogo 19.aseprite": {
+    "frame": { "x": 1280, "y": 720, "w": 640, "h": 360 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
+    "sourceSize": { "w": 640, "h": 360 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.6-x64",
+  "image": "TitleLogo.png",
+  "format": "RGBA8888",
+  "size": { "w": 2560, "h": 1440 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "?", "opacity": 255, "blendMode": "normal" },
+   { "name": "My Y", "opacity": 255, "blendMode": "normal" },
+   { "name": "My M", "opacity": 255, "blendMode": "normal" },
+   { "name": "Hand D", "opacity": 255, "blendMode": "normal" },
+   { "name": "Hand A", "opacity": 255, "blendMode": "normal" },
+   { "name": "Hand N", "opacity": 255, "blendMode": "normal" },
+   { "name": "Hand H", "opacity": 255, "blendMode": "normal" },
+   { "name": "Take E", "opacity": 255, "blendMode": "normal" },
+   { "name": "Take A", "opacity": 255, "blendMode": "normal" },
+   { "name": "Take K", "opacity": 255, "blendMode": "normal" },
+   { "name": "Take T", "opacity": 255, "blendMode": "normal" },
+   { "name": "smallHand", "opacity": 255, "blendMode": "normal" },
+   { "name": "Chain", "opacity": 255, "blendMode": "normal" },
+   { "name": "Shadow", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

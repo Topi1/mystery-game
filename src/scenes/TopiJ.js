@@ -31,9 +31,12 @@ export class TopiJ extends Scene
             repeat: 0
         });
 
-        this.myLogo.anims.play("logoAnim")
+        this.time.delayedCall(800, () => {
+            this.myLogo.anims.play("logoAnim");
+        }, [], this);
+        //this.myLogo.anims.play("logoAnim")
 
-        this.time.delayedCall(12300, () => {
+        this.time.delayedCall(14000, () => {
             this.scene.start('TitleScreen');
         }, [], this);
     

@@ -40,6 +40,7 @@ export class Preloader extends Scene
         this.load.audio("introSong", "audio/introSong.mp3")
 
         this.load.atlas("TJlogo", "TopiLogo.png", "TopiLogo.json")
+        this.load.atlas("TitleLogo", "TitleLogo.png", "TitleLogo.json")
 
         this.load.image('logo', 'logo.png');
         this.load.image('logo2', 'logo2.png')
