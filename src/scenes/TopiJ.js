@@ -13,7 +13,7 @@ export class TopiJ extends Scene
         this.introSong = this.sound.add("introSong")
         this.introSong.play()
 
-        this.topiText = this.add.bitmapText(80, 15, "baseFont", "Topi Jarvinen 2024", 16).setOrigin(0.5,0.5)
+        this.topiText = this.add.bitmapText(80, 15, "baseFont", "Topi Järvinen 2024", 16).setOrigin(0.5,0.5)
 
         this.myLogo = this.add.sprite(320, 170, 'TJlogo').setOrigin(0.5,0.5)
 
@@ -34,7 +34,7 @@ export class TopiJ extends Scene
         this.myLogo.anims.play("logoAnim")
 
         this.time.delayedCall(12300, () => {
-            this.scene.start('MainMenu');
+            this.scene.start('TitleScreen');
         }, [], this);
     
 

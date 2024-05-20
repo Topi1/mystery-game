@@ -4,6 +4,7 @@ import { Game } from './scenes/Game';
 import { GameOver } from './scenes/GameOver';
 import { WarningStart } from './scenes/Warning';
 import { TopiJ } from './scenes/TopiJ';
+import { TitleScreen } from './scenes/TitleScreen';
 import { MainMenu } from './scenes/MainMenu';
 import { Preloader } from './scenes/Preloader';
 import  PhaserNavMeshPlugin  from "phaser-navmesh"
@@ -47,6 +48,7 @@ const config = {
         Preloader,
         WarningStart,
         TopiJ,
+        TitleScreen,
         MainMenu,
         Game,
         GameOver

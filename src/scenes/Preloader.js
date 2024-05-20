@@ -34,7 +34,7 @@ export class Preloader extends Scene
 
 
         //FONTS
-        this.load.bitmapFont('baseFont', 'fonts/pixelFont_0.png', 'fonts/pixelFont.fnt')
+        this.load.bitmapFont('baseFont', 'fonts/baseFont_0.png', 'fonts/baseFont.fnt')
 
         //AUDIO
         this.load.audio("introSong", "audio/introSong.mp3")
