@@ -92,28 +92,74 @@ export class TitleScreen extends Scene
             repeat: -1
         })
 
-        this.time.delayedCall(3000, () => {
-            this.titleLogo.anims.play("titleAnim");
-        }, [], this);
+        if(this.titleLogo){
+            this.time.delayedCall(3000, () => {
+                if(this.titleLogo && this.titleLogo.active){
+                    this.titleLogo.anims.play("titleAnim");
+                }
+            }, [], this);
+        }
         
 
         this.titleLogo.on("animationcomplete", () => {
-            if(this.titleLogo.anims.currentAnim.key === "titleAnim") {
+            if(this.titleLogo && this.titleLogo.active && this.titleLogo.anims.currentAnim.key === "titleAnim") {
                 this.time.delayedCall(2000, () => {
-                    this.titleLogo.anims.play("titleHandAnim");
+                    if(this.titleLogo){
+                        this.titleLogo.anims.play("titleHandAnim");
+                    }
                 }, [], this);
             }
         }) 
         
 
-        this.startText = this.add.bitmapText(320,320, "baseFont", "Press anywhere to start", 22).setOrigin(0.5,0.5)
+        this.startText = this.add.bitmapText(320,420, "baseFont", "Press anywhere to start", 22).setOrigin(0.5,0.5)
         this.startText.depth = 5
-        //this.startText.setTint(0xff0000)
+
+        this.tweens.add({
+            targets: this.startText,
+            y: 320,
+            duration: 1300,
+            ease: "Power2",
+            delay: 1000,
+           
+        
+        })
+        
 
         this.input.once('pointerdown', () => {
 
-            this.scene.start('Game');
 
-        });
+            this.titleLogo.destroy()
+            this.bOpacity.destroy()
+            this.startText.destroy()
+            this.upTitle.destroy()
+            this.downTitle.destroy()
+
+            this.titleClickUp = this.add.image(320, 170, 'titleClickUp').setOrigin(0.5,0.5)
+            this.titleClickUp.depth = 2
+            this.tweens.add({
+                targets: this.titleClickUp,
+                y: -40,
+                duration: 1300,
+                ease: "Power2",
+                delay: 900,
+            })
+
+            this.titleClickDown = this.add.image(320, 170, 'titleClickDown').setOrigin(0.5,0.5)
+            this.titleClickDown.depth = 1
+            this.tweens.add({
+                targets: this.titleClickDown,
+                y: 420,
+                duration: 1300,
+                ease: "Power2",
+                delay: 900,
+            })
+
+            this.time.delayedCall(2300, () => {
+                this.scene.start('Game')
+            }, [], this)
+            
+
+        })
     }
 }
