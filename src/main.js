@@ -3,6 +3,7 @@ import { Boot } from './scenes/Boot';
 import { Game } from './scenes/Game';
 import { GameOver } from './scenes/GameOver';
 import { WarningStart } from './scenes/Warning';
+import { FlashWarning } from './scenes/FlashWarning';
 import { TopiJ } from './scenes/TopiJ';
 import { TitleScreen } from './scenes/TitleScreen';
 import { MainMenu } from './scenes/MainMenu';
@@ -47,6 +48,7 @@ const config = {
         Boot,
         Preloader,
         WarningStart,
+        FlashWarning,
         TopiJ,
         TitleScreen,
         MainMenu,

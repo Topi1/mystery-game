@@ -32,7 +32,7 @@
     "duration": 100
    },
    "TitleLogoAnim 4.aseprite": {
-    "frame": { "x": 1920, "y": 0, "w": 640, "h": 360 },
+    "frame": { "x": 1280, "y": 0, "w": 640, "h": 360 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
@@ -40,7 +40,7 @@
     "duration": 100
    },
    "TitleLogoAnim 5.aseprite": {
-    "frame": { "x": 1920, "y": 0, "w": 640, "h": 360 },
+    "frame": { "x": 1280, "y": 0, "w": 640, "h": 360 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
@@ -48,7 +48,7 @@
     "duration": 100
    },
    "TitleLogoAnim 6.aseprite": {
-    "frame": { "x": 1280, "y": 0, "w": 640, "h": 360 },
+    "frame": { "x": 1920, "y": 0, "w": 640, "h": 360 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
@@ -56,7 +56,7 @@
     "duration": 100
    },
    "TitleLogoAnim 7.aseprite": {
-    "frame": { "x": 1280, "y": 0, "w": 640, "h": 360 },
+    "frame": { "x": 1920, "y": 0, "w": 640, "h": 360 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
@@ -64,7 +64,7 @@
     "duration": 100
    },
    "TitleLogoAnim 8.aseprite": {
-    "frame": { "x": 2560, "y": 0, "w": 640, "h": 360 },
+    "frame": { "x": 1920, "y": 0, "w": 640, "h": 360 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
@@ -72,7 +72,7 @@
     "duration": 100
    },
    "TitleLogoAnim 9.aseprite": {
-    "frame": { "x": 2560, "y": 0, "w": 640, "h": 360 },
+    "frame": { "x": 1920, "y": 0, "w": 640, "h": 360 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
@@ -80,7 +80,7 @@
     "duration": 100
    },
    "TitleLogoAnim 10.aseprite": {
-    "frame": { "x": 1280, "y": 0, "w": 640, "h": 360 },
+    "frame": { "x": 2560, "y": 0, "w": 640, "h": 360 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
@@ -88,7 +88,7 @@
     "duration": 100
    },
    "TitleLogoAnim 11.aseprite": {
-    "frame": { "x": 1280, "y": 0, "w": 640, "h": 360 },
+    "frame": { "x": 2560, "y": 0, "w": 640, "h": 360 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
@@ -96,7 +96,7 @@
     "duration": 100
    },
    "TitleLogoAnim 12.aseprite": {
-    "frame": { "x": 0, "y": 360, "w": 640, "h": 360 },
+    "frame": { "x": 2560, "y": 0, "w": 640, "h": 360 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
@@ -104,7 +104,7 @@
     "duration": 100
    },
    "TitleLogoAnim 13.aseprite": {
-    "frame": { "x": 0, "y": 360, "w": 640, "h": 360 },
+    "frame": { "x": 2560, "y": 0, "w": 640, "h": 360 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
@@ -112,7 +112,7 @@
     "duration": 100
    },
    "TitleLogoAnim 14.aseprite": {
-    "frame": { "x": 1280, "y": 0, "w": 640, "h": 360 },
+    "frame": { "x": 0, "y": 360, "w": 640, "h": 360 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 640, "h": 360 },
@@ -370,7 +370,6 @@
   "frameTags": [
   ],
   "layers": [
-   { "name": "logoBG", "opacity": 255, "blendMode": "normal" },
    { "name": "MY HAND ?", "opacity": 255, "blendMode": "normal" },
    { "name": "TAKE", "opacity": 255, "blendMode": "normal" },
    { "name": "smallHand", "opacity": 255, "blendMode": "normal" },

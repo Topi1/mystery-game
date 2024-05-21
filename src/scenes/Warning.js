@@ -19,12 +19,12 @@ export class WarningStart extends Scene
         
         this.startText = this.add.bitmapText(320, 300, "baseFont", "GOT IT, START THE GAME", 32).setOrigin(0.5,0.5)
         .setInteractive({ useHandCursor: true })
-        .on('pointerdown', () => this.scene.start('TopiJ'))
+        .on('pointerdown', () => this.scene.start('FlashWarning'))
         this.startText.setTint(0x000000)
         this.startText.depth = 1
 
         this.startButton = this.add.rectangle(320,300, 300, 34, 0x00ff00).setInteractive({ useHandCursor: true })
-        .on('pointerdown', () => this.scene.start('TopiJ'))
+        .on('pointerdown', () => this.scene.start('FlashWarning'))
         
         
 

@@ -13,20 +13,83 @@ export class TitleScreen extends Scene
         this.topiText.depth = 5
 
         //this.add.image(320, 170, 'logo2').setOrigin(0.5,0.5)
-        this.bOpacity = this.add.image(320, 170, 'blackOpacity').setOrigin(0.5,0.5)
+
+        /*this.bOpacity = this.add.image(320, 170, 'blackOpacity').setOrigin(0.5,0.5)
         this.bOpacity.depth = 4
         this.bOpacity.alpha = 0
 
-        this.time.delayedCall(11500, () => {
-            this.bOpacity.alpha = 100
-        }, [], this)
-
         this.tweens.add({
             targets: this.bOpacity,
-            alpha: 0,  
-            duration: 3000,  
+            alpha: 0.9,  
+            duration: 700,  
             ease: 'Linear',  
-            delay: 13000,
+            delay: 3600,
+            onComplete: () => {
+
+                this.tweens.add({
+                    targets: this.bOpacity,
+                    alpha: 0,  
+                    duration: 1000,  
+                    ease: 'Linear',  
+                })
+            }
+        })
+        this.tweens.add({
+            targets: this.bOpacity,
+            alpha: 0.9,  
+            duration: 700,  
+            ease: 'Linear',  
+            delay: 5600,
+            onComplete: () => {
+
+                this.tweens.add({
+                    targets: this.bOpacity,
+                    alpha: 0,  
+                    duration: 1000,  
+                    ease: 'Linear',  
+                })
+            }
+        })
+        this.tweens.add({
+            targets: this.bOpacity,
+            alpha: 1,  
+            duration: 700,  
+            ease: 'Linear',  
+            delay: 7600,
+            onComplete: () => {
+
+                this.tweens.add({
+                    targets: this.bOpacity,
+                    alpha: 0,  
+                    duration: 1000,  
+                    ease: 'Linear',  
+                })
+            }
+        }) */
+
+
+        this.bOpacity2 = this.add.image(320, 170, 'blackOpacity').setOrigin(0.5,0.5)
+        this.bOpacity2.depth = 4
+        this.bOpacity2.alpha = 0
+
+        /*this.time.delayedCall(11500, () => {
+            this.bOpacity2.alpha = 100
+        }, [], this) */
+
+        this.tweens.add({
+            targets: this.bOpacity2,
+            alpha: 1,  
+            duration: 500,  
+            ease: 'Linear',  
+            delay: 11500,
+        })
+
+        this.tweens.add({
+            targets: this.bOpacity2,
+            alpha: 0,  
+            duration: 2800,  
+            ease: 'Linear',  
+            delay: 13500,
         })
 
         this.upTitle = this.add.image(320, -40, 'upTitle').setOrigin(0.5,0.5)
@@ -130,7 +193,8 @@ export class TitleScreen extends Scene
 
 
             this.titleLogo.destroy()
-            this.bOpacity.destroy()
+            //this.bOpacity.destroy()
+            this.bOpacity2.destroy()
             this.startText.destroy()
             this.upTitle.destroy()
             this.downTitle.destroy()
@@ -156,7 +220,7 @@ export class TitleScreen extends Scene
             })
 
             this.time.delayedCall(2300, () => {
-                this.scene.start('Game')
+                this.scene.start('MainMenu')
             }, [], this)
             
 
