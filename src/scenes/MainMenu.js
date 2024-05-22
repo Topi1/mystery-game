@@ -13,9 +13,15 @@ export class MainMenu extends Scene
         this.topiText = this.add.bitmapText(80, 15, "baseFont", "Topi Järvinen 2024", 16).setOrigin(0.5,0.5)
         this.topiText.depth = 5
 
-        this.lights.enable().setAmbientColor(0x080808);
+        this.scalableTitle = this.add.sprite(150, 100, 'scalableTitle').setOrigin(0.5,0.5)
+        //let texture = this.textures.get("scalableTitle")
+        //texture.setFilter(Phaser.Textures.FilterMode.NEAREST)
+        this.scalableTitle.depth = 5
+        this.scalableTitle.scale = 0.4
 
-        this.walkingPlayer = this.add.sprite(300, 100, "player");
+        this.lights.enable().setAmbientColor(0x000000);
+
+        this.walkingPlayer = this.add.sprite(280, 110, "player");
         this.walkingPlayer.depth = 2
         this.walkingPlayer.setPipeline("Light2D")
 
@@ -33,22 +39,18 @@ export class MainMenu extends Scene
         })
         this.walkingPlayer.anims.play("walk")
 
-        this.light = this.lights.addLight(330,90,100)
+        this.light = this.lights.addLight(310,95,100)
         this.light.depth = 3
 
 
         //this.bgTest = this.add.rectangle(320,130, 640, 34, 0x00ff00)
         //this.bgTest.setPipeline("Light2D")
 
-        this.mainMenuBG = this.add.tileSprite(320, 115, 0, 0, 'mainMenuBG').setOrigin(0.5,0.5)
+        this.mainMenuBG = this.add.tileSprite(320, 115, 0, 0, 'mainMenuBG2').setOrigin(0.5,0.5)
         this.mainMenuBG.setPipeline("Light2D")
         this.mainMenuBG.depth = 0
 
-        this.input.once('pointerdown', () => {
-
-            this.scene.start('Game');
-
-        });
+        
     }
 
     update() {

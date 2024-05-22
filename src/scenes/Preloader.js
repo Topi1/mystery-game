@@ -54,6 +54,8 @@ export class Preloader extends Scene
         this.load.image("titleClickUp", "logos/TitleRdy1.png")
         this.load.image("titleClickDown", "logos/TitleRdy2.png")
 
+        this.load.image("scalableTitle", "logos/TitlePng.png")
+
 
         //TILEMAPS
         //this.load.image("tiles", "tiles.png")
@@ -68,6 +70,7 @@ export class Preloader extends Scene
 
         //BACKGROUNDS
         this.load.image("mainMenuBG", "backgrounds/MainMenuBG.png")
+        this.load.image("mainMenuBG2", "backgrounds/MainMenuBG2.png")
 
 
         //CHARACTERS
@@ -82,6 +85,6 @@ export class Preloader extends Scene
         
 
         //  Move to the MainMenu. You could also swap this for a Scene Transition, such as a camera fade.
-        this.scene.start('MainMenu');
+        this.scene.start('Warning');
     }
 }
