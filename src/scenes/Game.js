@@ -16,6 +16,7 @@ export class Game extends Scene {
 
     create() {
         this.lights.enable().setAmbientColor(0x797979);
+        
 
         this.player = this.physics.add.sprite(600, 400, "player");
         this.player.body.setAllowGravity(false);

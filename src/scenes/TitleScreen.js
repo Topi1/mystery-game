@@ -9,6 +9,12 @@ export class TitleScreen extends Scene
 
     create ()
     {
+
+        this.input.enabled = false
+        this.time.delayedCall(1000, () => {
+            this.input.enabled = true
+        }, [], this)
+
         this.topiText = this.add.bitmapText(80, 15, "baseFont", "Topi Järvinen 2024", 16).setOrigin(0.5,0.5)
         this.topiText.depth = 5
 
