@@ -13,6 +13,9 @@ export class MainMenu extends Scene
         this.topiText = this.add.bitmapText(80, 15, "baseFont", "Topi Järvinen 2024", 16).setOrigin(0.5,0.5)
         this.topiText.depth = 5
 
+        this.quoteText = this.add.bitmapText(450, 100, "baseFont", "A person's fears are lighter\n when the danger is at hand.\n\n- Lucius Annaeus Seneca", 16).setOrigin(0.5,0.5)
+        this.quoteText.depth = 5
+
         this.scalableTitle = this.add.sprite(150, 100, 'scalableTitle').setOrigin(0.5,0.5)
         //let texture = this.textures.get("scalableTitle")
         //texture.setFilter(Phaser.Textures.FilterMode.NEAREST)

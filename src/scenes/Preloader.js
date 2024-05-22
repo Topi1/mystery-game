@@ -49,6 +49,8 @@ export class Preloader extends Scene
 
         this.load.atlas("TitleLogoAnim", "logos/TitleLogoAnim.png", "logos/TitleLogoAnim.json")
 
+        this.load.image("shadowHand", "logos/TitleShadow.png")
+
         this.load.image("blackOpacity", "logos/blackOpacity.png")
 
         this.load.image("titleClickUp", "logos/TitleRdy1.png")
@@ -85,6 +87,6 @@ export class Preloader extends Scene
         
 
         //  Move to the MainMenu. You could also swap this for a Scene Transition, such as a camera fade.
-        this.scene.start('Warning');
+        this.scene.start('TitleScreen');
     }
 }

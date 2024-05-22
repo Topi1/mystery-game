@@ -20,59 +20,19 @@ export class TitleScreen extends Scene
 
         //this.add.image(320, 170, 'logo2').setOrigin(0.5,0.5)
 
-        /*this.bOpacity = this.add.image(320, 170, 'blackOpacity').setOrigin(0.5,0.5)
-        this.bOpacity.depth = 4
-        this.bOpacity.alpha = 0
-
+        this.shadowHand = this.add.image(680, 520, 'shadowHand').setOrigin(0.5,0.5)
+        this.shadowHand.depth = 4
         this.tweens.add({
-            targets: this.bOpacity,
-            alpha: 0.9,  
-            duration: 700,  
-            ease: 'Linear',  
-            delay: 3600,
-            onComplete: () => {
-
-                this.tweens.add({
-                    targets: this.bOpacity,
-                    alpha: 0,  
-                    duration: 1000,  
-                    ease: 'Linear',  
-                })
-            }
+            targets: this.shadowHand,
+            y: 220,
+            x: 380,
+            duration: 7300,
+            ease: "Power2",
+            delay: 3000,
         })
-        this.tweens.add({
-            targets: this.bOpacity,
-            alpha: 0.9,  
-            duration: 700,  
-            ease: 'Linear',  
-            delay: 5600,
-            onComplete: () => {
-
-                this.tweens.add({
-                    targets: this.bOpacity,
-                    alpha: 0,  
-                    duration: 1000,  
-                    ease: 'Linear',  
-                })
-            }
-        })
-        this.tweens.add({
-            targets: this.bOpacity,
-            alpha: 1,  
-            duration: 700,  
-            ease: 'Linear',  
-            delay: 7600,
-            onComplete: () => {
-
-                this.tweens.add({
-                    targets: this.bOpacity,
-                    alpha: 0,  
-                    duration: 1000,  
-                    ease: 'Linear',  
-                })
-            }
-        }) */
-
+        this.time.delayedCall(12000, () => {
+            this.shadowHand.destroy()
+        }, [], this)
 
         this.bOpacity2 = this.add.image(320, 170, 'blackOpacity').setOrigin(0.5,0.5)
         this.bOpacity2.depth = 4
@@ -141,7 +101,7 @@ export class TitleScreen extends Scene
                 prefix: 'TitleLogoAnim ',
                 suffix: '.aseprite',
                 start: 0,
-                end: 13,
+                end: 1,
                 zeroPad: 1 // Ensure the frame numbers are correctly formatted (if necessary)
             }),
             frameRate: 2,
@@ -172,7 +132,7 @@ export class TitleScreen extends Scene
 
         this.titleLogo.on("animationcomplete", () => {
             if(this.titleLogo && this.titleLogo.active && this.titleLogo.anims.currentAnim.key === "titleAnim") {
-                this.time.delayedCall(2000, () => {
+                this.time.delayedCall(8500, () => {
                     if(this.titleLogo){
                         this.titleLogo.anims.play("titleHandAnim");
                     }
@@ -199,6 +159,7 @@ export class TitleScreen extends Scene
 
 
             this.titleLogo.destroy()
+            this.shadowHand.destroy()
             //this.bOpacity.destroy()
             this.bOpacity2.destroy()
             this.startText.destroy()
