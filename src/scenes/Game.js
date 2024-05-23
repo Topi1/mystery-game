@@ -16,7 +16,7 @@ export class Game extends Scene {
 
     create() {
         this.lights.enable().setAmbientColor(0x797979);
-        
+
 
         this.player = this.physics.add.sprite(600, 400, "player");
         this.player.body.setAllowGravity(false);
@@ -70,7 +70,7 @@ export class Game extends Scene {
 
         
 
-        this.cameras.main.startFollow(this.player, true, 1, 1);
+        this.cameras.main.startFollow(this.player, true, 0.01, 0.01);
         this.cameras.main.setBounds(0, 0, 2000, 2000);
 
         const map = this.make.tilemap({ key: "demomap" });

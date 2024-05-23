@@ -77,6 +77,11 @@ export class Preloader extends Scene
 
         //CHARACTERS
         this.load.atlas("player", "detective.png", "detective.json")
+
+        //UI
+        this.load.spritesheet("menuButton", "UI/menuBtn.png", {frameWidth: 132, frameHeight: 38})
+        this.load.image("plusIcon", "UI/plusIcon.png")
+
     }
 
     create ()
@@ -87,6 +92,6 @@ export class Preloader extends Scene
         
 
         //  Move to the MainMenu. You could also swap this for a Scene Transition, such as a camera fade.
-        this.scene.start('TitleScreen');
+        this.scene.start('Warning');
     }
 }
