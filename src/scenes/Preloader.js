@@ -80,6 +80,7 @@ export class Preloader extends Scene
 
         //UI
         this.load.spritesheet("menuButton", "UI/menuBtn.png", {frameWidth: 132, frameHeight: 38})
+        this.load.spritesheet("menuIcons", "UI/menuIcons.png", {frameWidth: 38, frameHeight: 38})
         this.load.image("plusIcon", "UI/plusIcon.png")
 
     }
@@ -92,6 +93,6 @@ export class Preloader extends Scene
         
 
         //  Move to the MainMenu. You could also swap this for a Scene Transition, such as a camera fade.
-        this.scene.start('Warning');
+        this.scene.start('MainMenu');
     }
 }
