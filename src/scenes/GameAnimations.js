@@ -40,7 +40,7 @@ export default class GameAnimations {
                     suffix: '.aseprite',
                     start: 9,
                     end: 16,
-                    zeroPad: 1 
+                     
                 }),
                 frameRate: 6,
                 repeat: -1
@@ -53,7 +53,7 @@ export default class GameAnimations {
                     suffix: '.aseprite',
                     start: 1,
                     end: 8,
-                    zeroPad: 1 
+                    
                 }),
                 frameRate: 6,
                 repeat: -1
@@ -66,7 +66,7 @@ export default class GameAnimations {
                     suffix: '.aseprite',
                     start: 17,
                     end: 24,
-                    zeroPad: 1 
+                    
                 }),
                 frameRate: 6,
                 repeat: -1

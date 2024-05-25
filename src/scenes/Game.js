@@ -8,7 +8,7 @@ export class Game extends Scene {
     constructor() {
         super('Game');
         this.cursor;
-        this.playerSpeed = 65;
+        this.playerSpeed = 66;
         this.currentPath = [];
         this.currentPathIndex = 0;
         this.targetPosition = null;
@@ -16,13 +16,15 @@ export class Game extends Scene {
     }
 
     create() {
+        this.fpsText = this.add.text(100, 100, '', { font: '30px Arial', fill: '#ffffff' });
+        this.fpsText.depth = 10
 
         GameAnimations.create(this)
 
         this.lights.enable().setAmbientColor(0x797979);
 
 
-        this.player = this.physics.add.sprite(600, 400, "player");
+        this.player = this.physics.add.sprite(600, 400, "player").setOrigin(0.5,0.5)
         this.player.body.setAllowGravity(false);
         this.player.depth = 5;
         this.player.scale = 1;
@@ -32,10 +34,10 @@ export class Game extends Scene {
 
         this.player.postFX.addShadow(0,0,0.06,1)
 
-
+        
         
 
-        this.cameras.main.startFollow(this.player, true, 0.05, 0.05);
+        this.cameras.main.startFollow(this.player, true, 1, 1);
         this.cameras.main.setBounds(0, 0, 2000, 2000);
 
         const map = this.make.tilemap({ key: "demomap" });
@@ -95,7 +97,7 @@ export class Game extends Scene {
 
     startPathfinding(targetX, targetY) {
         console.log("START PATH")
-
+        this.player.body.setDrag(0, 0);
         const start = { x: this.player.x, y: this.player.y };
         const end = { x: targetX, y: targetY };
 
@@ -111,44 +113,44 @@ export class Game extends Scene {
     }
 
     moveToNextPoint() {
-
-
         if (this.currentPathIndex < this.currentPath.length) {
             this.targetPosition = this.currentPath[this.currentPathIndex];
-            this.physics.moveToObject(this.player, this.targetPosition, this.playerSpeed);
+            const deltaX = this.targetPosition.x - this.player.x;
+            const deltaY = this.targetPosition.y - this.player.y;
+            const angle = Math.atan2(deltaY, deltaX);
 
-            const deltaX = Math.abs(this.targetPosition.x - this.player.x);
-            const deltaY = Math.abs(this.targetPosition.y - this.player.y);
-            //console.log(`DeltaX: ${deltaX}, DeltaY: ${deltaY}`)
+            this.player.body.setVelocityX(Math.cos(angle) * this.playerSpeed);
+            this.player.body.setVelocityY(Math.sin(angle) * this.playerSpeed);
 
             
-            
-        if (deltaY > deltaX) {
-            if (this.player.y < this.targetPosition.y) {
-                this.player.anims.play("walkDown", true); // Moving downwards
-            } else if (this.player.y > this.targetPosition.y){
-                this.player.anims.play("walkUp", true); // Moving upwards
-                console.log("Playing walkUp Animation")
-            }
-        } else {
-            this.player.anims.play("walk", true); // Horizontal movement, use the default walk animation
-        }
 
-            // Adjust player facing direction
-            this.player.flipX = this.targetPosition.x < this.player.x;
+            this.adjustPlayerAnimation(deltaX, deltaY);
 
             this.currentPathIndex++;
+
         } else {
             this.targetPosition = null;
             this.player.body.setVelocity(0, 0);
-            this.player.anims.stop("walk")
+            this.player.anims.stop();
             this.player.setFrame(0)
+            this.player.body.setDrag(50, 50);
         }
     }
 
-    preRender(time, delta) {
-        this.cameras.main.centerOn(this.player.x, this.player.y);
+    adjustPlayerAnimation(deltaX, deltaY) {
+        if (Math.abs(deltaY) > Math.abs(deltaX)) {
+            if (deltaY > 0) {
+                this.player.anims.play("walkDown", true);
+            } else {
+                this.player.anims.play("walkUp", true);
+            }
+        } else {
+            this.player.anims.play("walk", true);
+        }
+        this.player.flipX = deltaX < 0;
     }
+
+    
 
     update() {
         /*const camera = this.cameras.main;
@@ -158,8 +160,12 @@ export class Game extends Scene {
 
         //this.player.body.setOffset(24, 93)
 
-        this.cameras.main.scrollX = Math.floor(this.player.x - this.cameras.main.width / 2);
-        this.cameras.main.scrollY = Math.floor(this.player.y - this.cameras.main.height / 2);
+        
+        // Ensure the camera update is smooth
+        
+        //this.player.x = Math.round(this.player.x);
+        //this.player.y = Math.round(this.player.y);
+        this.fpsText.setText('FPS: ' + this.game.loop.actualFps.toFixed(2));
 
         if (this.targetPosition) {
             const distance = Phaser.Math.Distance.Between(this.player.x, this.player.y, this.targetPosition.x, this.targetPosition.y);

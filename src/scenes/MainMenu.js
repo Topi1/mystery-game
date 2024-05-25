@@ -223,7 +223,7 @@ export class MainMenu extends Scene
             }, [], this)
 
             this.time.delayedCall(2500, () => {
-                this.scene.start('TitleScreen')
+                this.scene.start('Game')
             }, [], this)
     })
 
