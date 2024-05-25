@@ -30,7 +30,7 @@ export class TitleScreen extends Scene
             ease: "Power2",
             delay: 3000,
         })
-        this.time.delayedCall(12000, () => {
+        this.time.delayedCall(12150, () => {
             this.shadowHand.destroy()
         }, [], this)
 

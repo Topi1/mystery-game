@@ -1,4 +1,5 @@
 import { Scene } from 'phaser';
+import { SettingsPopup } from './UIscenes/SettingsPopup';
 
 export class MainMenu extends Scene
 {
@@ -8,10 +9,23 @@ export class MainMenu extends Scene
     }
 
     create ()
-    {
+    {   
+        this.blackOverlay = this.add.graphics({ fillStyle: { color: 0x000000 } });
+        this.blackOverlay.fillRect(0, 0, this.sys.game.config.width, this.sys.game.config.height);
+        this.blackOverlay.depth = 6
+
+        this.tweens.add({
+            targets: this.blackOverlay,
+            alpha: 0,
+            duration: 1800, 
+            ease: 'Cubic.easeOut', 
+            onComplete: () => {
+                this.blackOverlay.destroy();
+            }
+        });
 
         this.topiText = this.add.bitmapText(80, 15, "baseFont", "Topi Järvinen 2024", 16).setOrigin(0.5,0.5)
-        this.topiText.depth = 5
+        this.topiText.depth = 6
 
         /*this.quoteText = this.add.bitmapText(450, 100, "baseFont", "A person's fears are lighter\n when the danger is at hand.\n\n- Lucius Annaeus Seneca", 16).setOrigin(0.5,0.5)
         this.quoteText.depth = 5*/
@@ -53,6 +67,9 @@ export class MainMenu extends Scene
         this.mainMenuBG.depth = 0
 
         //BUTTONS
+
+        this.canGoBack = true
+
 
         //New Game
         this.newGameBtn = this.add.sprite(300,200, "menuButton").setFrame(0).setInteractive({ useHandCursor: true })
@@ -181,12 +198,14 @@ export class MainMenu extends Scene
         Phaser.Display.Align.In.Center(this.creditsText, this.creditsBtn);
         this.creditsIcon = this.add.sprite(340,336,"menuIcons", 4)
         this.creditsIcon.depth = 0
-        this.creditsIcon.alpha = 0.8
+        this.creditsIcon.alpha = 0.7
 
         
         
         //BUTTON CLICKS
         this.moveBackground = true
+
+        //New Game
 
         this.newGameBtn.on('pointerdown', () => {
 
@@ -194,7 +213,7 @@ export class MainMenu extends Scene
                 targets: this.walkingPlayer,
                 x: 700,
                 duration: 6000,
-                ease: "Sine.InOut",
+                //ease: "Sine.InOut",
                 delay: 200
             })
             
@@ -207,6 +226,15 @@ export class MainMenu extends Scene
             }, [], this)
     })
 
+
+        //Settings
+
+        this.settingsPopup = new SettingsPopup(this, this.cameras.main.centerX, this.cameras.main.centerY)
+        this.settingsPopup.depth = 10
+
+        this.settingsBtn.on('pointerdown', () => {
+            this.settingsPopup.toggleVisibility()
+        })
         
     }
 
