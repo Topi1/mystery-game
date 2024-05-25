@@ -1,4 +1,5 @@
 import { Scene } from 'phaser';
+import GameAnimations from './GameAnimations';
 
 
 const { Vector2 } = Phaser.Math;
@@ -15,6 +16,9 @@ export class Game extends Scene {
     }
 
     create() {
+
+        GameAnimations.create(this)
+
         this.lights.enable().setAmbientColor(0x797979);
 
 
@@ -29,48 +33,9 @@ export class Game extends Scene {
         this.player.postFX.addShadow(0,0,0.06,1)
 
 
-        this.anims.create({
-            key: 'walk',
-            frames: this.anims.generateFrameNames('player', {
-                prefix: 'detective ',
-                suffix: '.aseprite',
-                start: 9,
-                end: 16,
-                zeroPad: 1 // Ensure the frame numbers are correctly formatted (if necessary)
-            }),
-            frameRate: 6,
-            repeat: -1
-        });
-
-        this.anims.create({
-            key: 'walkDown',
-            frames: this.anims.generateFrameNames('player', {
-                prefix: 'detective ',
-                suffix: '.aseprite',
-                start: 1,
-                end: 8,
-                zeroPad: 1 // Ensure the frame numbers are correctly formatted (if necessary)
-            }),
-            frameRate: 6,
-            repeat: -1
-        });
-
-        this.anims.create({
-            key: 'walkUp',
-            frames: this.anims.generateFrameNames('player', {
-                prefix: 'detective ',
-                suffix: '.aseprite',
-                start: 17,
-                end: 24,
-                zeroPad: 1 // Ensure the frame numbers are correctly formatted (if necessary)
-            }),
-            frameRate: 6,
-            repeat: -1
-        });
-
         
 
-        this.cameras.main.startFollow(this.player, true, 0.01, 0.01);
+        this.cameras.main.startFollow(this.player, true, 0.05, 0.05);
         this.cameras.main.setBounds(0, 0, 2000, 2000);
 
         const map = this.make.tilemap({ key: "demomap" });
@@ -181,6 +146,10 @@ export class Game extends Scene {
         }
     }
 
+    preRender(time, delta) {
+        this.cameras.main.centerOn(this.player.x, this.player.y);
+    }
+
     update() {
         /*const camera = this.cameras.main;
         const cameraLerpSpeed = this.cameraLerpSpeed;
@@ -188,6 +157,10 @@ export class Game extends Scene {
         camera.scrollY = Phaser.Math.Linear(camera.scrollY, this.player.y - camera.height / 2, cameraLerpSpeed); */
 
         //this.player.body.setOffset(24, 93)
+
+        this.cameras.main.scrollX = Math.floor(this.player.x - this.cameras.main.width / 2);
+        this.cameras.main.scrollY = Math.floor(this.player.y - this.cameras.main.height / 2);
+
         if (this.targetPosition) {
             const distance = Phaser.Math.Distance.Between(this.player.x, this.player.y, this.targetPosition.x, this.targetPosition.y);
             

@@ -1,5 +1,6 @@
 import { Scene } from 'phaser';
 import { SettingsPopup } from './UIscenes/SettingsPopup';
+import { HowToPlayPopup } from './UIscenes/HowToPlayPopup';
 
 export class MainMenu extends Scene
 {
@@ -234,6 +235,15 @@ export class MainMenu extends Scene
 
         this.settingsBtn.on('pointerdown', () => {
             this.settingsPopup.toggleVisibility()
+        })
+
+        //How to play
+
+        this.howToPlayPopup = new HowToPlayPopup(this, this.cameras.main.centerX, this.cameras.main.centerY)
+        this.howToPlayPopup.depth = 10
+
+        this.howPlayBtn.on('pointerdown', () => {
+            this.howToPlayPopup.toggleVisibility()
         })
         
     }

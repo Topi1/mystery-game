@@ -1,4 +1,5 @@
 import { Scene } from 'phaser';
+import GameAnimations from './GameAnimations';
 
 export class TitleScreen extends Scene
 {
@@ -7,8 +8,10 @@ export class TitleScreen extends Scene
         super('TitleScreen');
     }
 
+
     create ()
     {
+        GameAnimations.create(this)
 
         this.input.enabled = false
         this.time.delayedCall(1000, () => {
@@ -95,31 +98,7 @@ export class TitleScreen extends Scene
         this.titleLogo = this.add.sprite(320, 170, 'TitleLogoAnim').setOrigin(0.5,0.5)
         this.titleLogo.depth = 3
 
-        this.anims.create({
-            key: 'titleAnim',
-            frames: this.anims.generateFrameNames('TitleLogoAnim', {
-                prefix: 'TitleLogoAnim ',
-                suffix: '.aseprite',
-                start: 0,
-                end: 1,
-                zeroPad: 1 // Ensure the frame numbers are correctly formatted (if necessary)
-            }),
-            frameRate: 2,
-            repeat: 0
-        });
-
-        this.anims.create({
-            key: 'titleHandAnim',
-            frames: this.anims.generateFrameNames('TitleLogoAnim', {
-                prefix: 'TitleLogoAnim ',
-                suffix: '.aseprite',
-                start: 15,
-                end: 44,
-                zeroPad: 1 // Ensure the frame numbers are correctly formatted (if necessary)
-            }),
-            frameRate: 5,
-            repeat: -1
-        })
+        
 
         if(this.titleLogo){
             this.time.delayedCall(3000, () => {
