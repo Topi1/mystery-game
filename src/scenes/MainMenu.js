@@ -42,7 +42,7 @@ export class MainMenu extends Scene
         })
         this.walkingPlayer.anims.play("walk")
 
-        this.light = this.lights.addLight(310,95,100)
+        this.light = this.lights.addLight(310,95,220)
         this.light.depth = 3
 
 
@@ -54,13 +54,14 @@ export class MainMenu extends Scene
 
         //BUTTONS
 
+        //New Game
         this.newGameBtn = this.add.sprite(300,200, "menuButton").setFrame(0).setInteractive({ useHandCursor: true })
         this.newGameBtn.depth = 1
         this.newGameBtn.on('pointerover', () => {this.newGameBtn.setFrame(1), this.newGameBtn.depth = 2,
             this.tweens.add({
                 targets: this.plusIcon,
                 x: 384,
-                duration: 1000,
+                duration: 800,
                 ease: "Sine.InOut"
             })
         })
@@ -79,13 +80,14 @@ export class MainMenu extends Scene
         this.plusIcon.alpha = 0.6
 
 
+        //Load Game
         this.loadGameBtn = this.add.sprite(340,234, "menuButton").setFrame(0).setInteractive({ useHandCursor: true })
         this.loadGameBtn.depth = 1
         this.loadGameBtn.on('pointerover', () => {this.loadGameBtn.setFrame(1), this.loadGameBtn.depth = 2,
             this.tweens.add({
                 targets: this.loadIcon,
-                x: 254,
-                duration: 1000,
+                x: 256,
+                duration: 800,
                 ease: "Sine.InOut"
             })
         })
@@ -103,13 +105,15 @@ export class MainMenu extends Scene
         this.loadIcon.depth = 0
         this.loadIcon.alpha = 0.6
 
+
+        //Settings
         this.settingsBtn = this.add.sprite(300,268, "menuButton").setFrame(0).setInteractive({ useHandCursor: true })
         this.settingsBtn.depth = 1
         this.settingsBtn.on('pointerover', () => {this.settingsBtn.setFrame(1), this.settingsBtn.depth = 2,
             this.tweens.add({
                 targets: this.settingsIcon,
                 x: 384,
-                duration: 1000,
+                duration: 800,
                 ease: "Sine.InOut"
             })
         })
@@ -127,13 +131,15 @@ export class MainMenu extends Scene
         this.settingsIcon.depth = 0
         this.settingsIcon.alpha = 0.6
 
+
+        //How to Play
         this.howPlayBtn = this.add.sprite(340,302, "menuButton").setFrame(0).setInteractive({ useHandCursor: true })
         this.howPlayBtn.depth = 1
         this.howPlayBtn.on('pointerover', () => {this.howPlayBtn.setFrame(1), this.howPlayBtn.depth = 2,
             this.tweens.add({
                 targets: this.howPlayIcon,
-                x: 254,
-                duration: 1000,
+                x: 268,
+                duration: 800,
                 ease: "Sine.InOut"
             })
         })
@@ -151,13 +157,15 @@ export class MainMenu extends Scene
         this.howPlayIcon.depth = 0
         this.howPlayIcon.alpha = 0.6
 
+
+        //Credits Button
         this.creditsBtn = this.add.sprite(300,336, "menuButton").setFrame(0).setInteractive({ useHandCursor: true })
         this.creditsBtn.depth = 1
         this.creditsBtn.on('pointerover', () => {this.creditsBtn.setFrame(1), this.creditsBtn.depth = 2,
             this.tweens.add({
                 targets: this.creditsIcon,
                 x: 384,
-                duration: 1000,
+                duration: 800,
                 ease: "Sine.InOut"
             })
         })
@@ -173,16 +181,38 @@ export class MainMenu extends Scene
         Phaser.Display.Align.In.Center(this.creditsText, this.creditsBtn);
         this.creditsIcon = this.add.sprite(340,336,"menuIcons", 4)
         this.creditsIcon.depth = 0
-        this.creditsIcon.alpha = 0.6
+        this.creditsIcon.alpha = 0.8
 
         
         
-        
+        //BUTTON CLICKS
+        this.moveBackground = true
+
+        this.newGameBtn.on('pointerdown', () => {
+
+            this.tweens.add({
+                targets: this.walkingPlayer,
+                x: 700,
+                duration: 6000,
+                ease: "Sine.InOut",
+                delay: 200
+            })
+            
+            this.time.delayedCall(200, () => {
+                this.moveBackground = false
+            }, [], this)
+
+            this.time.delayedCall(2500, () => {
+                this.scene.start('TitleScreen')
+            }, [], this)
+    })
 
         
     }
 
     update() {
-        this.mainMenuBG.tilePositionX += 0.5
+        if(this.moveBackground){
+            this.mainMenuBG.tilePositionX += 0.5
+        }
     }
 }
