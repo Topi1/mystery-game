@@ -16,8 +16,8 @@ export class Game extends Scene {
     }
 
     create() {
-        this.fpsText = this.add.text(100, 100, '', { font: '30px Arial', fill: '#ffffff' });
-        this.fpsText.depth = 10
+        //this.fpsText = this.add.text(100, 100, '', { font: '30px Arial', fill: '#ffffff' });
+        //this.fpsText.depth = 10
 
         GameAnimations.create(this)
 
@@ -37,8 +37,11 @@ export class Game extends Scene {
         
         
 
-        this.cameras.main.startFollow(this.player, true, 1, 1);
-        this.cameras.main.setBounds(0, 0, 2000, 2000);
+        this.cameras.main.startFollow(this.player, true, 0.05, 0.05);
+        this.cameras.main.followOffset.set(-1, -1);
+        //this.cameras.main.setBounds(0, 0, 2000, 2000);
+        
+        this.cameras.main.setDeadzone(80, 80);
 
         const map = this.make.tilemap({ key: "demomap" });
 
@@ -67,7 +70,7 @@ export class Game extends Scene {
 
         this.navMesh.enableDebug({ color: 0xff0000}) 
 
-
+        this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
         // Set up collision detection for all layers
         this.physics.add.collider(this.player, [
             firstLayer,
@@ -117,10 +120,22 @@ export class Game extends Scene {
             this.targetPosition = this.currentPath[this.currentPathIndex];
             const deltaX = this.targetPosition.x - this.player.x;
             const deltaY = this.targetPosition.y - this.player.y;
-            const angle = Math.atan2(deltaY, deltaX);
+
+
+            const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        
+            if (distance > 2) {
+                const speed = this.playerSpeed;
+                this.player.body.setVelocityX((deltaX / distance) * speed);
+                this.player.body.setVelocityY((deltaY / distance) * speed);
+            } else {
+                this.player.body.setVelocity(0, 0);
+            }
+
+            /*const angle = Math.atan2(deltaY, deltaX);
 
             this.player.body.setVelocityX(Math.cos(angle) * this.playerSpeed);
-            this.player.body.setVelocityY(Math.sin(angle) * this.playerSpeed);
+            this.player.body.setVelocityY(Math.sin(angle) * this.playerSpeed);*/
 
             
 
@@ -153,24 +168,19 @@ export class Game extends Scene {
     
 
     update() {
-        /*const camera = this.cameras.main;
-        const cameraLerpSpeed = this.cameraLerpSpeed;
-        camera.scrollX = Phaser.Math.Linear(camera.scrollX, this.player.x - camera.width / 2, cameraLerpSpeed);
-        camera.scrollY = Phaser.Math.Linear(camera.scrollY, this.player.y - camera.height / 2, cameraLerpSpeed); */
-
-        //this.player.body.setOffset(24, 93)
-
         
-        // Ensure the camera update is smooth
+
+        this.cameras.main.scrollX = Math.round(this.cameras.main.scrollX);
+        this.cameras.main.scrollY = Math.round(this.cameras.main.scrollY);
         
-        //this.player.x = Math.round(this.player.x);
-        //this.player.y = Math.round(this.player.y);
-        this.fpsText.setText('FPS: ' + this.game.loop.actualFps.toFixed(2));
+        
+
+        //this.fpsText.setText('FPS: ' + this.game.loop.actualFps.toFixed(2));
 
         if (this.targetPosition) {
             const distance = Phaser.Math.Distance.Between(this.player.x, this.player.y, this.targetPosition.x, this.targetPosition.y);
             
-            if (distance < 4) {
+            if (distance < 5) {
                 //this.player.body.reset(this.targetPosition.x, this.targetPosition.y);
                 
                 this.moveToNextPoint();
