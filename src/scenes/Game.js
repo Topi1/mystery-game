@@ -12,7 +12,10 @@ export class Game extends Scene {
         this.currentPath = [];
         this.currentPathIndex = 0;
         this.targetPosition = null;
-        //this.cameraLerpSpeed = 0.1; // Camera lerp speed
+        
+        this.idleAnimationCounter = 0;
+        this.maxIdleRepeats = 3;
+        this.currentIdleAnimation = 'playerIdle1'
     }
 
     create() {
@@ -33,6 +36,8 @@ export class Game extends Scene {
         this.player.setPipeline("Light2D");
 
         this.player.postFX.addShadow(0,0,0.06,1)
+
+        
 
         
 
@@ -82,6 +87,19 @@ export class Game extends Scene {
         this.input.on("pointerup", (pointer) => {
             const { worldX, worldY } = pointer;
             this.startPathfinding(worldX, worldY);
+        });
+
+
+        this.player.on('animationcomplete', (animation) => {
+            if (animation.key === 'playerIdle1') {
+                this.idleAnimationCounter++;
+                if (this.idleAnimationCounter >= this.maxIdleRepeats) {
+                    this.currentIdleAnimation = 'playerIdle2';
+                    this.idleAnimationCounter = 0;  // Reset counter
+                }
+            } else if (animation.key === 'playerIdle2') {
+                this.currentIdleAnimation = 'playerIdle1';  // Switch back to the first idle animation
+            }
         });
     }
 
@@ -148,6 +166,7 @@ export class Game extends Scene {
             this.player.anims.stop();
             this.player.setFrame(0)
             this.player.body.setDrag(50, 50);
+            //this.player.anims.play("playedIdle1")
         }
     }
 
@@ -232,6 +251,10 @@ export class Game extends Scene {
                 //this.player.body.reset(this.targetPosition.x, this.targetPosition.y);
                 
                 this.moveToNextPoint();
+            }
+        } else {
+            if (this.player.body.velocity.x === 0 && this.player.body.velocity.y === 0) {
+                this.player.anims.play(this.currentIdleAnimation, true)
             }
         }
 

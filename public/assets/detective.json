@@ -326,6 +326,70 @@
     "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 96 },
     "sourceSize": { "w": 48, "h": 96 },
     "duration": 100
+   },
+   "detective 41.aseprite": {
+    "frame": { "x": 0, "y": 0, "w": 48, "h": 96 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 96 },
+    "sourceSize": { "w": 48, "h": 96 },
+    "duration": 100
+   },
+   "detective 42.aseprite": {
+    "frame": { "x": 288, "y": 480, "w": 48, "h": 96 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 96 },
+    "sourceSize": { "w": 48, "h": 96 },
+    "duration": 100
+   },
+   "detective 43.aseprite": {
+    "frame": { "x": 0, "y": 576, "w": 48, "h": 96 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 96 },
+    "sourceSize": { "w": 48, "h": 96 },
+    "duration": 100
+   },
+   "detective 44.aseprite": {
+    "frame": { "x": 48, "y": 576, "w": 48, "h": 96 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 96 },
+    "sourceSize": { "w": 48, "h": 96 },
+    "duration": 100
+   },
+   "detective 45.aseprite": {
+    "frame": { "x": 96, "y": 576, "w": 48, "h": 96 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 96 },
+    "sourceSize": { "w": 48, "h": 96 },
+    "duration": 100
+   },
+   "detective 46.aseprite": {
+    "frame": { "x": 144, "y": 576, "w": 48, "h": 96 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 96 },
+    "sourceSize": { "w": 48, "h": 96 },
+    "duration": 100
+   },
+   "detective 47.aseprite": {
+    "frame": { "x": 0, "y": 576, "w": 48, "h": 96 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 96 },
+    "sourceSize": { "w": 48, "h": 96 },
+    "duration": 100
+   },
+   "detective 48.aseprite": {
+    "frame": { "x": 288, "y": 480, "w": 48, "h": 96 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 96 },
+    "sourceSize": { "w": 48, "h": 96 },
+    "duration": 100
    }
  },
  "meta": {
@@ -333,7 +397,7 @@
   "version": "1.3.7-x64",
   "image": "detective.png",
   "format": "RGBA8888",
-  "size": { "w": 336, "h": 576 },
+  "size": { "w": 336, "h": 672 },
   "scale": "1",
   "frameTags": [
   ],

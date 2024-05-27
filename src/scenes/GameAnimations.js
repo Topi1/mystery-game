@@ -42,7 +42,7 @@ export default class GameAnimations {
                     end: 16,
                      
                 }),
-                frameRate: 6,
+                frameRate: 5,
                 repeat: -1
             });
     
@@ -55,7 +55,7 @@ export default class GameAnimations {
                     end: 8,
                     
                 }),
-                frameRate: 6,
+                frameRate: 5,
                 repeat: -1
             });
     
@@ -68,7 +68,7 @@ export default class GameAnimations {
                     end: 24,
                     
                 }),
-                frameRate: 6,
+                frameRate: 5,
                 repeat: -1
             });
 
@@ -81,7 +81,7 @@ export default class GameAnimations {
                     end: 32,
                     
                 }),
-                frameRate: 6,
+                frameRate: 5,
                 repeat: -1
             });
 
@@ -94,8 +94,34 @@ export default class GameAnimations {
                     end: 40,
                     
                 }),
-                frameRate: 6,
+                frameRate: 5,
                 repeat: -1
+            });
+
+            scene.anims.create({
+                key: 'playerIdle1',
+                frames: scene.anims.generateFrameNames('player', {
+                    prefix: 'detective ',
+                    suffix: '.aseprite',
+                    start: 41,
+                    end: 42,
+                    
+                }),
+                frameRate: 1,
+                //repeat: -1
+            });
+
+            scene.anims.create({
+                key: 'playerIdle2',
+                frames: scene.anims.generateFrameNames('player', {
+                    prefix: 'detective ',
+                    suffix: '.aseprite',
+                    start: 43,
+                    end: 48,
+                    
+                }),
+                frameRate: 1,
+                //repeat: -1
             });
 
 

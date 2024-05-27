@@ -250,7 +250,7 @@ export class MainMenu extends Scene
 
     update() {
         if(this.moveBackground){
-            this.mainMenuBG.tilePositionX += 0.5
+            this.mainMenuBG.tilePositionX += 0.3
         }
     }
 }
