@@ -35,7 +35,6 @@ export class Game extends Scene {
         this.player.postFX.addShadow(0,0,0.06,1)
 
         
-        
 
         this.cameras.main.startFollow(this.player, true, 0.05, 0.05);
         this.cameras.main.followOffset.set(-1, -1);
@@ -152,7 +151,7 @@ export class Game extends Scene {
         }
     }
 
-    adjustPlayerAnimation(deltaX, deltaY) {
+    /*adjustPlayerAnimation(deltaX, deltaY) {
         if (Math.abs(deltaY) > Math.abs(deltaX)) {
             if (deltaY > 0) {
                 this.player.anims.play("walkDown", true);
@@ -163,8 +162,57 @@ export class Game extends Scene {
             this.player.anims.play("walk", true);
         }
         this.player.flipX = deltaX < 0;
-    }
+    } */
 
+    /*adjustPlayerAnimation(deltaX, deltaY) {
+        const absDeltaX = Math.abs(deltaX);
+        const absDeltaY = Math.abs(deltaY);
+    
+        // Determine if the movement is more horizontal or vertical
+        if (absDeltaY > absDeltaX) {
+            if (deltaY > 0) {
+                this.player.anims.play("walkDown", true);
+            } else {
+                this.player.anims.play("walkUp", true);
+            }
+        } else if (absDeltaX > absDeltaY) {
+            this.player.anims.play("walk", true);
+        } else {
+            // Play diagonal walking animation when moving roughly equally in X and Y directions
+            this.player.anims.play("walkDiag", true);
+        }
+    
+        // Adjust sprite flipping based on X direction
+        this.player.flipX = deltaX < 0;
+    } */
+
+    adjustPlayerAnimation(deltaX, deltaY) {
+        const angle = Math.atan2(deltaY, deltaX) * 180 / Math.PI;  // Convert radians to degrees
+    
+        // Normalize the angle to a range of 0 to 360 degrees
+        const normalizedAngle = angle < 0 ? 360 + angle : angle;
+    
+        if (normalizedAngle >= 67.5 && normalizedAngle < 112.5) {
+            this.player.anims.play("walkDown", true);  // South
+        } else if (normalizedAngle >= 112.5 && normalizedAngle < 157.5) {
+            this.player.anims.play("walkDiag", true);  // Southwest
+        } else if (normalizedAngle >= 157.5 && normalizedAngle < 202.5) {
+            this.player.anims.play("walk", true);  // West
+        } else if (normalizedAngle >= 202.5 && normalizedAngle < 247.5) {
+            this.player.anims.play("walkDiagUp", true);  // Northwest
+        } else if (normalizedAngle >= 247.5 && normalizedAngle < 292.5) {
+            this.player.anims.play("walkUp", true);  // North
+        } else if (normalizedAngle >= 292.5 && normalizedAngle < 337.5) {
+            this.player.anims.play("walkDiagUp", true);  // Northeast
+        } else if (normalizedAngle >= 337.5 || normalizedAngle < 22.5) {
+            this.player.anims.play("walk", true);  // East
+        } else if (normalizedAngle >= 22.5 && normalizedAngle < 67.5) {
+            this.player.anims.play("walkDiag", true);  // Southeast
+        }
+    
+        // Adjust sprite flipping based on X direction
+        this.player.flipX = deltaX < 0;
+    }
     
 
     update() {

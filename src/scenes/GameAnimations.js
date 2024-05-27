@@ -72,6 +72,32 @@ export default class GameAnimations {
                 repeat: -1
             });
 
+            scene.anims.create({
+                key: 'walkDiag',
+                frames: scene.anims.generateFrameNames('player', {
+                    prefix: 'detective ',
+                    suffix: '.aseprite',
+                    start: 25,
+                    end: 32,
+                    
+                }),
+                frameRate: 6,
+                repeat: -1
+            });
+
+            scene.anims.create({
+                key: 'walkDiagUp',
+                frames: scene.anims.generateFrameNames('player', {
+                    prefix: 'detective ',
+                    suffix: '.aseprite',
+                    start: 33,
+                    end: 40,
+                    
+                }),
+                frameRate: 6,
+                repeat: -1
+            });
+
 
 
         
