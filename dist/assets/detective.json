@@ -376,7 +376,7 @@
     "duration": 100
    },
    "detective 47.aseprite": {
-    "frame": { "x": 0, "y": 576, "w": 48, "h": 96 },
+    "frame": { "x": 192, "y": 576, "w": 48, "h": 96 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 96 },
@@ -384,6 +384,38 @@
     "duration": 100
    },
    "detective 48.aseprite": {
+    "frame": { "x": 240, "y": 576, "w": 48, "h": 96 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 96 },
+    "sourceSize": { "w": 48, "h": 96 },
+    "duration": 100
+   },
+   "detective 49.aseprite": {
+    "frame": { "x": 96, "y": 576, "w": 48, "h": 96 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 96 },
+    "sourceSize": { "w": 48, "h": 96 },
+    "duration": 100
+   },
+   "detective 50.aseprite": {
+    "frame": { "x": 144, "y": 576, "w": 48, "h": 96 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 96 },
+    "sourceSize": { "w": 48, "h": 96 },
+    "duration": 100
+   },
+   "detective 51.aseprite": {
+    "frame": { "x": 0, "y": 576, "w": 48, "h": 96 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 96 },
+    "sourceSize": { "w": 48, "h": 96 },
+    "duration": 100
+   },
+   "detective 52.aseprite": {
     "frame": { "x": 288, "y": 480, "w": 48, "h": 96 },
     "rotated": false,
     "trimmed": false,
