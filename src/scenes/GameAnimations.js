@@ -2,10 +2,17 @@
 
 export default class GameAnimations {
     static create(scene) {
+
+            const addAnimation = (config) => {
+                if (!scene.anims.exists(config.key)) {
+                    scene.anims.create(config)
+                }
+            }
         
 
             //TITLE SCREEN
-            scene.anims.create({
+            
+            addAnimation({
                 key: 'titleAnim',
                 frames: scene.anims.generateFrameNames('TitleLogoAnim', {
                     prefix: 'TitleLogoAnim ',
@@ -18,7 +25,7 @@ export default class GameAnimations {
                 repeat: 0
             });
     
-            scene.anims.create({
+            addAnimation({
                 key: 'titleHandAnim',
                 frames: scene.anims.generateFrameNames('TitleLogoAnim', {
                     prefix: 'TitleLogoAnim ',
@@ -33,7 +40,7 @@ export default class GameAnimations {
 
             //PLAYER CHARACTER
 
-            scene.anims.create({
+            addAnimation({
                 key: 'walk',
                 frames: scene.anims.generateFrameNames('player', {
                     prefix: 'detective ',
@@ -46,7 +53,7 @@ export default class GameAnimations {
                 repeat: -1
             });
     
-            scene.anims.create({
+            addAnimation({
                 key: 'walkDown',
                 frames: scene.anims.generateFrameNames('player', {
                     prefix: 'detective ',
@@ -59,7 +66,7 @@ export default class GameAnimations {
                 repeat: -1
             });
     
-            scene.anims.create({
+            addAnimation({
                 key: 'walkUp',
                 frames: scene.anims.generateFrameNames('player', {
                     prefix: 'detective ',
@@ -72,7 +79,7 @@ export default class GameAnimations {
                 repeat: -1
             });
 
-            scene.anims.create({
+            addAnimation({
                 key: 'walkDiag',
                 frames: scene.anims.generateFrameNames('player', {
                     prefix: 'detective ',
@@ -85,7 +92,7 @@ export default class GameAnimations {
                 repeat: -1
             });
 
-            scene.anims.create({
+            addAnimation({
                 key: 'walkDiagUp',
                 frames: scene.anims.generateFrameNames('player', {
                     prefix: 'detective ',
@@ -98,7 +105,7 @@ export default class GameAnimations {
                 repeat: -1
             });
 
-            scene.anims.create({
+            addAnimation({
                 key: 'playerIdle1',
                 frames: scene.anims.generateFrameNames('player', {
                     prefix: 'detective ',
@@ -111,13 +118,13 @@ export default class GameAnimations {
                 //repeat: -1
             });
 
-            scene.anims.create({
+            addAnimation({
                 key: 'playerIdle2',
                 frames: scene.anims.generateFrameNames('player', {
                     prefix: 'detective ',
                     suffix: '.aseprite',
                     start: 43,
-                    end: 48,
+                    end: 52,
                     
                 }),
                 frameRate: 1,

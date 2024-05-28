@@ -2,29 +2,35 @@ import { Physics } from 'phaser';
 import { Boot } from './scenes/Boot';
 import { Game } from './scenes/Game';
 import { GameOver } from './scenes/GameOver';
-import { WarningStart } from './scenes/Warning';
-import { FlashWarning } from './scenes/FlashWarning';
-import { TopiJ } from './scenes/TopiJ';
-import { TitleScreen } from './scenes/TitleScreen';
-import { MainMenu } from './scenes/MainMenu';
+import { WarningStart } from './scenes/IntroScenes/Warning';
+import { FlashWarning } from './scenes/IntroScenes/FlashWarning';
+import { TopiJ } from './scenes/IntroScenes/TopiJ';
+import { TitleScreen } from './scenes/IntroScenes/TitleScreen';
+import { MainMenu } from './scenes/IntroScenes/MainMenu';
+import { FerryScene } from './scenes/IntroScenes/FerryScene';
 import { Preloader } from './scenes/Preloader';
 import  PhaserNavMeshPlugin  from "phaser-navmesh"
-import { Warning } from './scenes/Warning';
+import { Warning } from './scenes/IntroScenes/Warning';
 
 
 
 //  Find out more information about the Game Config at:
 //  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config = {
-    type: Phaser.AUTO,
+    type: Phaser.WEBGL,
     width: 640,
     height: 360,
     parent: 'game-container',
     //backgroundColor: '#028af8',
     pixelArt: true,
     fixedStep: false,
+    roundPixels: true,
     
-    fps: 300,
+    fps: {
+        target: 60,
+        //forceSetTimeOut : false,
+        deltaHistory: 10
+    },
 
     plugins: {
         scene: [
@@ -52,6 +58,7 @@ const config = {
         TopiJ,
         TitleScreen,
         MainMenu,
+        FerryScene,
         Game,
         GameOver
     ],
@@ -59,7 +66,7 @@ const config = {
         
         default: "arcade",
         arcade: {
-            gravity: 0,
+            gravity: { y: 0 },
             //debug: true,
             fixedStep: true
         },

@@ -37,7 +37,14 @@ export class Preloader extends Scene
         this.load.bitmapFont('baseFont', 'fonts/baseFont_0.png', 'fonts/baseFont.fnt')
 
         //AUDIO
+        //Songs
         this.load.audio("introSong", "audio/introSong.mp3")
+        //Other audio
+        this.load.audio("ferrySound", "audio/ferrySound.mp3")
+
+        //VIDEOS
+        this.load.video("ferryVid", "videos/ferryVid.mp4")
+
 
         //LOGOS
 
@@ -93,6 +100,6 @@ export class Preloader extends Scene
         
 
         //  Move to the MainMenu. You could also swap this for a Scene Transition, such as a camera fade.
-        this.scene.start('MainMenu');
+        this.scene.start("FerryScene");
     }
 }

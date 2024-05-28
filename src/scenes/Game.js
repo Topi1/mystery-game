@@ -8,7 +8,7 @@ export class Game extends Scene {
     constructor() {
         super('Game');
         this.cursor;
-        this.playerSpeed = 66;
+        this.playerSpeed = 59;
         this.currentPath = [];
         this.currentPathIndex = 0;
         this.targetPosition = null;
@@ -21,6 +21,8 @@ export class Game extends Scene {
     create() {
         //this.fpsText = this.add.text(100, 100, '', { font: '30px Arial', fill: '#ffffff' });
         //this.fpsText.depth = 10
+
+        //this.textures.setDefaultFilter('NEAREST');
 
         GameAnimations.create(this)
 
@@ -41,7 +43,7 @@ export class Game extends Scene {
 
         
 
-        this.cameras.main.startFollow(this.player, true, 0.05, 0.05);
+        this.cameras.main.startFollow(this.player, true, 0.03, 0.03);
         this.cameras.main.followOffset.set(-1, -1);
         //this.cameras.main.setBounds(0, 0, 2000, 2000);
         
@@ -132,27 +134,26 @@ export class Game extends Scene {
         }
     }
 
-    moveToNextPoint() {
+    /*moveToNextPoint() {
         if (this.currentPathIndex < this.currentPath.length) {
             this.targetPosition = this.currentPath[this.currentPathIndex];
             const deltaX = this.targetPosition.x - this.player.x;
             const deltaY = this.targetPosition.y - this.player.y;
-
-
             const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
         
             if (distance > 2) {
                 const speed = this.playerSpeed;
                 this.player.body.setVelocityX((deltaX / distance) * speed);
                 this.player.body.setVelocityY((deltaY / distance) * speed);
-            } else {
+
+
+               
+            }  else {
+                // Stop movement and snap to the exact target position
                 this.player.body.setVelocity(0, 0);
+                this.player.x = this.targetPosition.x;
+                this.player.y = this.targetPosition.y;
             }
-
-            /*const angle = Math.atan2(deltaY, deltaX);
-
-            this.player.body.setVelocityX(Math.cos(angle) * this.playerSpeed);
-            this.player.body.setVelocityY(Math.sin(angle) * this.playerSpeed);*/
 
             
 
@@ -166,44 +167,51 @@ export class Game extends Scene {
             this.player.anims.stop();
             this.player.setFrame(0)
             this.player.body.setDrag(50, 50);
-            //this.player.anims.play("playedIdle1")
+            
+        }
+    } */
+
+
+    moveToNextPoint() {
+        //const deltaSeconds = delta / 1000
+
+        if (this.currentPathIndex < this.currentPath.length) {
+            this.targetPosition = this.currentPath[this.currentPathIndex];
+            const deltaX = this.targetPosition.x - this.player.x;
+            const deltaY = this.targetPosition.y - this.player.y;
+            const distance = Phaser.Math.Distance.Between(this.player.x, this.player.y, this.targetPosition.x, this.targetPosition.y);
+
+            if (distance > 2) {
+                const speed = this.playerSpeed;
+                // Calculate normalized direction
+                const normDeltaX = deltaX / distance;
+                const normDeltaY = deltaY / distance;
+                // Apply speed and round to make the movement in whole pixels
+            this.player.body.setVelocityX(Math.round(normDeltaX * speed));
+            this.player.body.setVelocityY(Math.round(normDeltaY * speed));
+
+        } 
+        else {
+            this.player.body.setVelocity(0, 0);
+            // Snap to target and ensure coordinates are integers
+            this.player.x = this.targetPosition.x;
+            this.player.y = this.targetPosition.y;
+        }
+
+        this.adjustPlayerAnimation(deltaX, deltaY);
+        this.currentPathIndex++;
+
+        } else {
+            this.targetPosition = null;
+            this.player.body.setVelocity(0, 0);
+            this.player.anims.stop();
+            this.player.setFrame(0);
+            this.player.body.setDrag(50, 50);
         }
     }
 
-    /*adjustPlayerAnimation(deltaX, deltaY) {
-        if (Math.abs(deltaY) > Math.abs(deltaX)) {
-            if (deltaY > 0) {
-                this.player.anims.play("walkDown", true);
-            } else {
-                this.player.anims.play("walkUp", true);
-            }
-        } else {
-            this.player.anims.play("walk", true);
-        }
-        this.player.flipX = deltaX < 0;
-    } */
 
-    /*adjustPlayerAnimation(deltaX, deltaY) {
-        const absDeltaX = Math.abs(deltaX);
-        const absDeltaY = Math.abs(deltaY);
     
-        // Determine if the movement is more horizontal or vertical
-        if (absDeltaY > absDeltaX) {
-            if (deltaY > 0) {
-                this.player.anims.play("walkDown", true);
-            } else {
-                this.player.anims.play("walkUp", true);
-            }
-        } else if (absDeltaX > absDeltaY) {
-            this.player.anims.play("walk", true);
-        } else {
-            // Play diagonal walking animation when moving roughly equally in X and Y directions
-            this.player.anims.play("walkDiag", true);
-        }
-    
-        // Adjust sprite flipping based on X direction
-        this.player.flipX = deltaX < 0;
-    } */
 
     adjustPlayerAnimation(deltaX, deltaY) {
         const angle = Math.atan2(deltaY, deltaX) * 180 / Math.PI;  // Convert radians to degrees
@@ -240,7 +248,8 @@ export class Game extends Scene {
         this.cameras.main.scrollX = Math.round(this.cameras.main.scrollX);
         this.cameras.main.scrollY = Math.round(this.cameras.main.scrollY);
         
-        
+        //this.player.x = Math.round(this.player.x); // Ensuring the sprite position stays on integer coordinates
+        //this.player.y = Math.round(this.player.y);
 
         //this.fpsText.setText('FPS: ' + this.game.loop.actualFps.toFixed(2));
 
@@ -248,10 +257,10 @@ export class Game extends Scene {
             const distance = Phaser.Math.Distance.Between(this.player.x, this.player.y, this.targetPosition.x, this.targetPosition.y);
             
             if (distance < 5) {
-                //this.player.body.reset(this.targetPosition.x, this.targetPosition.y);
+                
                 
                 this.moveToNextPoint();
-            }
+            } 
         } else {
             if (this.player.body.velocity.x === 0 && this.player.body.velocity.y === 0) {
                 this.player.anims.play(this.currentIdleAnimation, true)
