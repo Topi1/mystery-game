@@ -1,5 +1,7 @@
 import { Scene } from 'phaser';
 import GameAnimations from '../GameAnimations';
+import SoundController from '../SoundController';
+
 
 export class TitleScreen extends Scene
 {
@@ -12,6 +14,8 @@ export class TitleScreen extends Scene
     create ()
     {
         GameAnimations.create(this)
+
+        
 
         this.input.enabled = false
         this.time.delayedCall(1000, () => {
@@ -166,6 +170,7 @@ export class TitleScreen extends Scene
             })
 
             this.time.delayedCall(2300, () => {
+                
                 this.scene.start('MainMenu')
             }, [], this)
             

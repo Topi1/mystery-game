@@ -7,6 +7,7 @@ import { FlashWarning } from './scenes/IntroScenes/FlashWarning';
 import { TopiJ } from './scenes/IntroScenes/TopiJ';
 import { TitleScreen } from './scenes/IntroScenes/TitleScreen';
 import { MainMenu } from './scenes/IntroScenes/MainMenu';
+import { IntroTextScene } from './scenes/IntroScenes/IntroTextScene';
 import { FerryScene } from './scenes/IntroScenes/FerryScene';
 import { Preloader } from './scenes/Preloader';
 import  PhaserNavMeshPlugin  from "phaser-navmesh"
@@ -58,6 +59,7 @@ const config = {
         TopiJ,
         TitleScreen,
         MainMenu,
+        IntroTextScene,
         FerryScene,
         Game,
         GameOver

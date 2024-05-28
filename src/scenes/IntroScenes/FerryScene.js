@@ -14,6 +14,7 @@ export class FerryScene extends Scene {
         
         this.soundManager.addSounds();
         this.soundManager.playSound('ferrySound');
+        
 
         /*this.topijText = this.add.bitmapText(150, 100, "baseFont", "Topi Järvinen 2024", 32).setOrigin(0.5,0.5)
         this.topijText.setTint(0xff0000)
@@ -53,15 +54,15 @@ export class FerryScene extends Scene {
             }
         });
 
-        this.ferryTitle = this.add.sprite(320, 170, 'scalableTitle').setOrigin(0.5,0.5)
+        this.ferryTitle = this.add.sprite(320, 160, 'scalableTitle').setOrigin(0.5,0.5)
         this.ferryTitle.alpha = 0
 
         this.tweens.add({
             targets: this.ferryTitle,
-            alpha: 0.6,
-            duration: 5500, 
+            alpha: 0.5,
+            duration: 4500, 
             ease: 'Cubic.easeOut', 
-            delay: 3000,
+            delay: 4000,
             onComplete: () => {
                 this.tweens.add({
                     targets: this.ferryTitle,

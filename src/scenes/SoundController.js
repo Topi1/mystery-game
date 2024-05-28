@@ -6,19 +6,28 @@ export default class SoundController {
     }
 
     addSounds() {
-        this.sounds.ferrySound = this.scene.sound.add('ferrySound');
-        console.log('Sound added:', this.sounds.ferrySound);
+        this.sounds.introSong = this.scene.sound.add("introSong")
+        console.log("Loaded introSong:", this.sounds.introSong);
+
+        this.sounds.ferrySound = this.scene.sound.add('ferrySound')
+        
     }
 
     playSound(key) {
         if (this.sounds[key]) {
             this.sounds[key].play();
+            console.log(`Playing sound: ${key}`);
+        } else {
+            console.log(`Sound key not found: ${key}`);
         }
     }
 
     stopSound(key) {
         if (this.sounds[key] && this.sounds[key].isPlaying) {
             this.sounds[key].stop();
+            console.log(`Attempted to stop sound: ${key}`);
+        } else {
+            console.log(`Sound key not found at stop attempt: ${key}`);
         }
     }
 

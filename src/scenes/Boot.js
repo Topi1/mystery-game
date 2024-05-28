@@ -1,4 +1,5 @@
 import { Scene } from 'phaser';
+import SoundController from './SoundController';
 
 export class Boot extends Scene
 {
@@ -17,6 +18,8 @@ export class Boot extends Scene
 
     create ()
     {
+        
+
         this.scene.start('Preloader');
     }
 }

@@ -1,4 +1,5 @@
 import { Scene } from 'phaser';
+import SoundController from '../SoundController';
 
 export class TopiJ extends Scene
 {
@@ -10,8 +11,8 @@ export class TopiJ extends Scene
     create ()
     {
         //AUDIO
-        this.introSong = this.sound.add("introSong")
-        this.introSong.play()
+        this.soundManager = this.game.registry.get('soundManager');
+        this.soundManager.playSound('introSong');
 
         this.topiText = this.add.bitmapText(80, 15, "baseFont", "Topi Järvinen 2024", 16).setOrigin(0.5,0.5)
 

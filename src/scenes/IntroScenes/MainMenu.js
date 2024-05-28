@@ -2,6 +2,7 @@ import { Scene } from 'phaser';
 import { SettingsPopup } from '../UIscenes/SettingsPopup';
 import { HowToPlayPopup } from '../UIscenes/HowToPlayPopup';
 import GameAnimations from '../GameAnimations';
+import SoundController from '../SoundController';
 
 export class MainMenu extends Scene
 {
@@ -12,7 +13,12 @@ export class MainMenu extends Scene
 
     create ()
     {   
+        this.soundManager = this.game.registry.get('soundManager');
+        
         GameAnimations.create(this)
+
+        
+
         this.blackOverlay = this.add.graphics({ fillStyle: { color: 0x000000 } });
         this.blackOverlay.fillRect(0, 0, this.sys.game.config.width, this.sys.game.config.height);
         this.blackOverlay.depth = 6
@@ -200,7 +206,7 @@ export class MainMenu extends Scene
         //New Game
 
         this.newGameBtn.on('pointerdown', () => {
-
+            
             this.tweens.add({
                 targets: this.walkingPlayer,
                 x: 700,
@@ -214,7 +220,8 @@ export class MainMenu extends Scene
             }, [], this)
 
             this.time.delayedCall(2500, () => {
-                this.scene.start('FerryScene')
+                this.soundManager.stopSound("introSong")
+                this.scene.start('IntroTextScene')
             }, [], this)
     })
 
