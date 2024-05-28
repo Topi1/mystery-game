@@ -15,6 +15,10 @@ export class FerryScene extends Scene {
         this.soundManager.addSounds();
         this.soundManager.playSound('ferrySound');
 
+        /*this.topijText = this.add.bitmapText(150, 100, "baseFont", "Topi Järvinen 2024", 32).setOrigin(0.5,0.5)
+        this.topijText.setTint(0xff0000)
+        this.topijText.depth = 5*/
+
         this.blackOverlay = this.add.graphics({ fillStyle: { color: 0x000000 } });
         this.blackOverlay.fillRect(0, 0, this.sys.game.config.width, this.sys.game.config.height);
         this.blackOverlay.depth = 6
@@ -40,16 +44,37 @@ export class FerryScene extends Scene {
             alpha: 1,
             duration: 1800, 
             ease: 'Cubic.easeOut', 
-            delay: 14000,
+            delay: 15000,
             onComplete: () => {
-                this.soundManager.stopSound('ferrySound');
+                this.time.delayedCall(2000, () => {
+                    this.soundManager.stopSound('ferrySound');
+                    this.scene.start('Game')
+                }, [], this)
+            }
+        });
+
+        this.ferryTitle = this.add.sprite(320, 170, 'scalableTitle').setOrigin(0.5,0.5)
+        this.ferryTitle.alpha = 0
+
+        this.tweens.add({
+            targets: this.ferryTitle,
+            alpha: 0.6,
+            duration: 5500, 
+            ease: 'Cubic.easeOut', 
+            delay: 3000,
+            onComplete: () => {
+                this.tweens.add({
+                    targets: this.ferryTitle,
+                    alpha: 0,
+                    duration: 2500, 
+                    ease: 'Cubic.easeOut', 
+                    
+                });
             }
         });
 
         
-
         
-        //this.ferryVid.setLoop(true)
 
         
     }
