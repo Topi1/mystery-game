@@ -42,6 +42,7 @@ export class Preloader extends Scene
         this.load.audio("introSong", "audio/introSong.mp3")
         //Other audio
         this.load.audio("ferrySound", "audio/ferrySound.mp3")
+        this.load.audio("typeWriter", "audio/typeW.mp3")
 
         //VIDEOS
         this.load.video("ferryVid", "videos/ferryVid.mp4")
@@ -103,6 +104,6 @@ export class Preloader extends Scene
         
 
         //  Move to the MainMenu. You could also swap this for a Scene Transition, such as a camera fade.
-        this.scene.start("MainMenu");
+        this.scene.start("IntroTextScene");
     }
 }

@@ -7,9 +7,11 @@ export default class SoundController {
 
     addSounds() {
         this.sounds.introSong = this.scene.sound.add("introSong")
-        console.log("Loaded introSong:", this.sounds.introSong);
+        
 
         this.sounds.ferrySound = this.scene.sound.add('ferrySound')
+
+        this.sounds.typeWriter = this.scene.sound.add('typeWriter')
         
     }
 
