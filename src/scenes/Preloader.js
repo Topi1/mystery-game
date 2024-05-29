@@ -73,10 +73,10 @@ export class Preloader extends Scene
 
         //TILEMAPS
         //this.load.image("tiles", "tiles.png")
-        this.load.image("lowWallTiles", "roofTiles.png")
-        this.load.image("objectTiles", "tiles.png")
-        this.load.image("highWallTiles", "walls.png")
-        this.load.image("floorTiles2", "floortiles2.png")
+        this.load.image("lowWallTiles", "extTiles/roofTiles.png")
+        this.load.image("objectTiles", "extTiles/tiles.png")
+        this.load.image("highWallTiles", "extTiles/walls.png")
+        this.load.image("floorTiles2", "extTiles/floortiles2.png")
 
         this.load.tilemapTiledJSON("map", "testtiles")
 
@@ -107,6 +107,6 @@ export class Preloader extends Scene
         
 
         //  Move to the MainMenu. You could also swap this for a Scene Transition, such as a camera fade.
-        this.scene.start("Warning");
+        this.scene.start("Game");
     }
 }

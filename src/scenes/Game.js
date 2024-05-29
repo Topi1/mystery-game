@@ -45,7 +45,7 @@ export class Game extends Scene {
 
         
 
-        this.cameras.main.startFollow(this.player, true, 0.03, 0.03);
+        this.cameras.main.startFollow(this.player, false, 0.03, 0.03);
         this.cameras.main.followOffset.set(-1, -1);
         //this.cameras.main.setBounds(0, 0, 2000, 2000);
         
@@ -53,10 +53,10 @@ export class Game extends Scene {
 
         const map = this.make.tilemap({ key: "demomap" });
 
-        const floorTileset = map.addTilesetImage("floor", "floorTiles2");
-        const lowWallTileset = map.addTilesetImage("lowWalls", "lowWallTiles");
-        const highWallTileset = map.addTilesetImage("walls", "highWallTiles");
-        const objectTileset = map.addTilesetImage("objects", "objectTiles");
+        const floorTileset = map.addTilesetImage("floor", "floorTiles2", 48,48,1,2);
+        const lowWallTileset = map.addTilesetImage("lowWalls", "lowWallTiles", 48,48,1,2);
+        const highWallTileset = map.addTilesetImage("walls", "highWallTiles", 48,48,1,2);
+        const objectTileset = map.addTilesetImage("objects", "objectTiles", 48,48,1,2);
 
         const firstLayer = map.createLayer("floor", floorTileset).setPipeline("Light2D");
         firstLayer.depth = 0;

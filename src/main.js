@@ -25,7 +25,7 @@ const config = {
     //backgroundColor: '#028af8',
     pixelArt: true,
     fixedStep: false,
-    roundPixels: true,
+    //roundPixels: true,
     
     fps: {
         target: 60,

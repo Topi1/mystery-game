@@ -15,7 +15,7 @@ export default class SoundController {
 
         this.sounds.typeWriter = this.scene.sound.add('typeWriter')
 
-        this.sounds.woodWalk = this.scene.sound.add("woodWalk", {volume: 0.2, loop: true})
+        this.sounds.woodWalk = this.scene.sound.add("woodWalk", {volume: 0.8, loop: true})
         
     }
 
