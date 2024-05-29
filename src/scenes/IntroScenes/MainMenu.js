@@ -14,6 +14,7 @@ export class MainMenu extends Scene
     create ()
     {   
         this.soundManager = this.game.registry.get('soundManager');
+        this.soundManager.setVolume("introSong", 0.6)
         
         GameAnimations.create(this)
 
@@ -206,7 +207,7 @@ export class MainMenu extends Scene
         //New Game
 
         this.newGameBtn.on('pointerdown', () => {
-            
+            this.soundManager.playSound("interfaceClick")
             this.tweens.add({
                 targets: this.walkingPlayer,
                 x: 700,

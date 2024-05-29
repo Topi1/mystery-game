@@ -8,10 +8,14 @@ export default class SoundController {
     addSounds() {
         this.sounds.introSong = this.scene.sound.add("introSong")
         
+        this.sounds.classicClick = this.scene.sound.add("classicClick", {volume: 0.2})
+        this.sounds.interfaceClick = this.scene.sound.add("interfaceClick", {volume: 0.3})
 
         this.sounds.ferrySound = this.scene.sound.add('ferrySound')
 
         this.sounds.typeWriter = this.scene.sound.add('typeWriter')
+
+        this.sounds.woodWalk = this.scene.sound.add("woodWalk", {volume: 0.2, loop: true})
         
     }
 

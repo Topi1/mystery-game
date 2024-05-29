@@ -13,6 +13,7 @@ export class TitleScreen extends Scene
 
     create ()
     {
+        this.soundManager = this.game.registry.get('soundManager');
         GameAnimations.create(this)
 
         
@@ -140,7 +141,7 @@ export class TitleScreen extends Scene
 
         this.input.once('pointerdown', () => {
 
-
+            this.soundManager.playSound("classicClick")
             this.titleLogo.destroy()
             this.shadowHand.destroy()
             //this.bOpacity.destroy()

@@ -59,15 +59,15 @@ export class FerryScene extends Scene {
 
         this.tweens.add({
             targets: this.ferryTitle,
-            alpha: 0.5,
-            duration: 4500, 
+            alpha: 0.3,
+            duration: 4000, 
             ease: 'Cubic.easeOut', 
-            delay: 4000,
+            delay: 4500,
             onComplete: () => {
                 this.tweens.add({
                     targets: this.ferryTitle,
                     alpha: 0,
-                    duration: 2500, 
+                    duration: 2000, 
                     ease: 'Cubic.easeOut', 
                     
                 });

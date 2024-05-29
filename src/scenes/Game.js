@@ -24,6 +24,8 @@ export class Game extends Scene {
 
         //this.textures.setDefaultFilter('NEAREST');
 
+        this.soundManager = this.game.registry.get('soundManager');
+
         GameAnimations.create(this)
 
         this.lights.enable().setAmbientColor(0x797979);
@@ -189,6 +191,7 @@ export class Game extends Scene {
                 // Apply speed and round to make the movement in whole pixels
             this.player.body.setVelocityX(Math.round(normDeltaX * speed));
             this.player.body.setVelocityY(Math.round(normDeltaY * speed));
+            this.soundManager.playSound("woodWalk")
 
         } 
         else {
@@ -202,6 +205,7 @@ export class Game extends Scene {
         this.currentPathIndex++;
 
         } else {
+            this.soundManager.stopSound("woodWalk")
             this.targetPosition = null;
             this.player.body.setVelocity(0, 0);
             this.player.anims.stop();
