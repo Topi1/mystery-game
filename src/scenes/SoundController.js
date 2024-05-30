@@ -15,26 +15,28 @@ export default class SoundController {
 
         this.sounds.typeWriter = this.scene.sound.add('typeWriter')
 
-        this.sounds.woodWalk = this.scene.sound.add("woodWalk", {volume: 0.8, loop: true})
+        this.sounds.woodWalk = this.scene.sound.add("woodWalk", {volume: 1.5, loop: true})
         
     }
 
     playSound(key) {
         if (this.sounds[key]) {
             this.sounds[key].play();
-            console.log(`Playing sound: ${key}`);
+            /*console.log(`Playing sound: ${key}`);
         } else {
             console.log(`Sound key not found: ${key}`);
-        }
+        } */
+    }
     }
 
     stopSound(key) {
         if (this.sounds[key] && this.sounds[key].isPlaying) {
             this.sounds[key].stop();
-            console.log(`Attempted to stop sound: ${key}`);
+           /* console.log(`Attempted to stop sound: ${key}`);
         } else {
             console.log(`Sound key not found at stop attempt: ${key}`);
-        }
+        } */
+    }
     }
 
     setVolume(key, volume) {

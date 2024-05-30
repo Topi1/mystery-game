@@ -2,7 +2,9 @@ import { Scene } from 'phaser';
 import GameAnimations from './GameAnimations';
 
 
-const { Vector2 } = Phaser.Math;
+
+
+
 
 export class Game extends Scene {
     constructor() {
@@ -19,12 +21,18 @@ export class Game extends Scene {
     }
 
     create() {
+
+        /*
+
+
         //this.fpsText = this.add.text(100, 100, '', { font: '30px Arial', fill: '#ffffff' });
         //this.fpsText.depth = 10
 
         //this.textures.setDefaultFilter('NEAREST');
 
         this.soundManager = this.game.registry.get('soundManager');
+        this.soundManager.playSound("introSong")
+        this.soundManager.setVolume("introSong", 0.2)
 
         GameAnimations.create(this)
 
@@ -45,11 +53,18 @@ export class Game extends Scene {
 
         
 
-        this.cameras.main.startFollow(this.player, false, 0.03, 0.03);
-        this.cameras.main.followOffset.set(-1, -1);
+        this.cameras.main.startFollow(this.player, true, 1, 1);
+        //this.cameras.main.followOffset.set(-1, -1);
+        //this.cameras.main.setZoom(2)
         //this.cameras.main.setBounds(0, 0, 2000, 2000);
         
         this.cameras.main.setDeadzone(80, 80);
+
+
+
+        
+
+
 
         const map = this.make.tilemap({ key: "demomap" });
 
@@ -70,7 +85,7 @@ export class Game extends Scene {
         firstLayer.setCollisionByProperty({ collides: true });
         secondLayer.setCollisionByProperty({ collides: true });
         thirdLayer.setCollisionByProperty({ collides: true });
-        fourthLayer.setCollisionByProperty({ collides: true });
+        fourthLayer.setCollisionByProperty({ collides: true }); 
 
         //const isWalkable = (tile) => !tile.collides;
 
@@ -85,7 +100,7 @@ export class Game extends Scene {
             secondLayer,
             thirdLayer,
             fourthLayer
-        ], this.handleCollision, null, this);
+        ], this.handleCollision, null, this); 
 
         // Add point-and-click functionality
         this.input.on("pointerup", (pointer) => {
@@ -121,6 +136,7 @@ export class Game extends Scene {
 
     startPathfinding(targetX, targetY) {
         console.log("START PATH")
+        
         this.player.body.setDrag(0, 0);
         const start = { x: this.player.x, y: this.player.y };
         const end = { x: targetX, y: targetY };
@@ -128,6 +144,10 @@ export class Game extends Scene {
         const path = this.navMesh.findPath(start, end);
         console.log('Path:', path);
         if (path) {
+            this.currentPath = path.map(point => ({
+                x: Math.round(point.x),
+                y: Math.round(point.y)
+            }));
             this.currentPath = path;
             this.currentPathIndex = 0;
             this.moveToNextPoint();
@@ -136,42 +156,7 @@ export class Game extends Scene {
         }
     }
 
-    /*moveToNextPoint() {
-        if (this.currentPathIndex < this.currentPath.length) {
-            this.targetPosition = this.currentPath[this.currentPathIndex];
-            const deltaX = this.targetPosition.x - this.player.x;
-            const deltaY = this.targetPosition.y - this.player.y;
-            const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-        
-            if (distance > 2) {
-                const speed = this.playerSpeed;
-                this.player.body.setVelocityX((deltaX / distance) * speed);
-                this.player.body.setVelocityY((deltaY / distance) * speed);
-
-
-               
-            }  else {
-                // Stop movement and snap to the exact target position
-                this.player.body.setVelocity(0, 0);
-                this.player.x = this.targetPosition.x;
-                this.player.y = this.targetPosition.y;
-            }
-
-            
-
-            this.adjustPlayerAnimation(deltaX, deltaY);
-
-            this.currentPathIndex++;
-
-        } else {
-            this.targetPosition = null;
-            this.player.body.setVelocity(0, 0);
-            this.player.anims.stop();
-            this.player.setFrame(0)
-            this.player.body.setDrag(50, 50);
-            
-        }
-    } */
+    
 
 
     moveToNextPoint() {
@@ -183,7 +168,7 @@ export class Game extends Scene {
             const deltaY = this.targetPosition.y - this.player.y;
             const distance = Phaser.Math.Distance.Between(this.player.x, this.player.y, this.targetPosition.x, this.targetPosition.y);
 
-            if (distance > 2) {
+            if (distance > 8) {
                 const speed = this.playerSpeed;
                 // Calculate normalized direction
                 const normDeltaX = deltaX / distance;
@@ -212,7 +197,11 @@ export class Game extends Scene {
             this.player.setFrame(0);
             this.player.body.setDrag(50, 50);
         }
-    }
+        
+    } 
+
+    
+     
 
 
     
@@ -247,10 +236,10 @@ export class Game extends Scene {
     
 
     update() {
-        
+        //console.log(this.player.body.position)
 
-        this.cameras.main.scrollX = Math.round(this.cameras.main.scrollX);
-        this.cameras.main.scrollY = Math.round(this.cameras.main.scrollY);
+        //this.cameras.main.scrollX = Math.round(this.cameras.main.scrollX);
+        //this.cameras.main.scrollY = Math.round(this.cameras.main.scrollY);
         
         //this.player.x = Math.round(this.player.x); // Ensuring the sprite position stays on integer coordinates
         //this.player.y = Math.round(this.player.y);
@@ -265,13 +254,17 @@ export class Game extends Scene {
                 
                 this.moveToNextPoint();
             } 
-        } else {
+        } 
+        
+        else {
             if (this.player.body.velocity.x === 0 && this.player.body.velocity.y === 0) {
                 this.player.anims.play(this.currentIdleAnimation, true)
             }
-        }
+        } */
 
         
-    }
+
+        
+    } 
 
 }

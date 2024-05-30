@@ -71,12 +71,25 @@ export class Preloader extends Scene
         this.load.image("scalableTitle", "logos/TitlePng.png")
 
 
-        //TILEMAPS
-        //this.load.image("tiles", "tiles.png")
+        //LEVELS
+
+        //tilesets
         this.load.image("lowWallTiles", "extTiles/roofTiles.png")
         this.load.image("objectTiles", "extTiles/tiles.png")
         this.load.image("highWallTiles", "extTiles/walls.png")
         this.load.image("floorTiles2", "extTiles/floortiles2.png")
+
+        this.load.image("A5_Hotel", "tiles/A5_Hotel.png")
+        this.load.image("A4_Hotel", "tiles/A4_Hotel.png")
+        this.load.image("Hotel_Bonus", "tiles/Hotel_Bonus.png")
+        this.load.image("Hotel_Outside_A3", "tiles/Hotel_Outside_A3.png")
+        this.load.image("Hotel_Outside", "tiles/Hotel_Outside.png")
+        this.load.image("portTiles", "tiles/portTiles.png")
+        
+
+
+        //maps
+        this.load.tilemapTiledJSON("IonaPort", "maps/IonaPort.json")
 
         this.load.tilemapTiledJSON("map", "testtiles")
 
@@ -107,6 +120,6 @@ export class Preloader extends Scene
         
 
         //  Move to the MainMenu. You could also swap this for a Scene Transition, such as a camera fade.
-        this.scene.start("Game");
+        this.scene.start("IonaPort");
     }
 }

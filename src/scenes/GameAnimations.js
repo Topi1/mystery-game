@@ -49,7 +49,7 @@ export default class GameAnimations {
                     end: 16,
                      
                 }),
-                frameRate: 5,
+                frameRate: 6,
                 repeat: -1
             });
     
@@ -62,7 +62,7 @@ export default class GameAnimations {
                     end: 8,
                     
                 }),
-                frameRate: 5,
+                frameRate: 6,
                 repeat: -1
             });
     
@@ -75,7 +75,7 @@ export default class GameAnimations {
                     end: 24,
                     
                 }),
-                frameRate: 5,
+                frameRate: 6,
                 repeat: -1
             });
 
@@ -88,7 +88,7 @@ export default class GameAnimations {
                     end: 32,
                     
                 }),
-                frameRate: 5,
+                frameRate: 6,
                 repeat: -1
             });
 
@@ -101,7 +101,7 @@ export default class GameAnimations {
                     end: 40,
                     
                 }),
-                frameRate: 5,
+                frameRate: 6,
                 repeat: -1
             });
 

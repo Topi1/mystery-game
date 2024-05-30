@@ -9,6 +9,7 @@ import { TitleScreen } from './scenes/IntroScenes/TitleScreen';
 import { MainMenu } from './scenes/IntroScenes/MainMenu';
 import { IntroTextScene } from './scenes/IntroScenes/IntroTextScene';
 import { FerryScene } from './scenes/IntroScenes/FerryScene';
+import { IonaPort } from './scenes/MapScenes/IonaPort';
 import { Preloader } from './scenes/Preloader';
 import  PhaserNavMeshPlugin  from "phaser-navmesh"
 import { Warning } from './scenes/IntroScenes/Warning';
@@ -24,13 +25,13 @@ const config = {
     parent: 'game-container',
     //backgroundColor: '#028af8',
     pixelArt: true,
-    fixedStep: false,
-    //roundPixels: true,
+    
+    roundPixels: true,
     
     fps: {
         target: 60,
         //forceSetTimeOut : false,
-        deltaHistory: 10
+        //deltaHistory: 10
     },
 
     plugins: {
@@ -61,6 +62,7 @@ const config = {
         MainMenu,
         IntroTextScene,
         FerryScene,
+        IonaPort,
         Game,
         GameOver
     ],
