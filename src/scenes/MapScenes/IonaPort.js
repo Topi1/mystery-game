@@ -16,14 +16,22 @@ export class IonaPort extends Scene {
     create() {
 
         GameAnimations.create(this)
-        this.player = new Player(this, 600, 170, 'player', 0,  this.navMesh);
+
+        this.lights.enable()
+        this.lights.enable().setAmbientColor(0x111211);
+
+        this.leftLantern = this.lights.addLight(150,90,140)
+        this.rightLantern = this.lights.addLight(370,90,140)
+        this.bigLantern = this.lights.addLight(620,100,140)
+        
+        this.player = new Player(this, 500, 170, 'player', 0,  this.navMesh);
+        this.player.setPipeline("Light2D")
 
         this.cameras.main.startFollow(this.player, true, 1, 1);
         //this.cameras.main.setBounds(0, 0, portMap.widthInPixels, portMap.heightInPixels);
         //this.cameras.main.setZoom(1.5)
 
-        this.lights.enable()
-        this.lights.enable().setAmbientColor(0x0ffffff);
+        
 
         const portMap = this.make.tilemap({ key: "IonaPort" });
 
@@ -57,6 +65,8 @@ export class IonaPort extends Scene {
         sixthLayer.setCollisionByProperty({ collides: true }); 
         seventhLayer.setCollisionByProperty({ collides: true }); 
 
+        
+
         this.navMesh = this.navMeshPlugin.buildMeshFromTilemap("meshPort", portMap);
 
         
@@ -75,16 +85,30 @@ export class IonaPort extends Scene {
         this.input.on("pointerup", (pointer) => {
             const { worldX, worldY } = pointer;
             this.player.startPathfinding(worldX, worldY);
+            console.log("Player at:", this.player.x, this.player.y);
+            console.log("Clicked at:", worldX, worldY);
+            //console.log("NavMesh valid:", this.navMesh !== undefined);
+            
         });
 
 
-
+        /*if (this.navMesh) {
+            this.navMesh.enableDebug(); // Generic call, your method might be different
+            this.navMesh.debugDrawMesh({
+                drawCentroid: true, 
+                drawBounds: true,
+                drawConnections: true,
+                drawPath: true
+            });
+        } */
 
 
         
     }
 
     update() {
+
+        
         this.player.update()
     }
 

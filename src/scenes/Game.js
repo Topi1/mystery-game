@@ -22,7 +22,7 @@ export class Game extends Scene {
 
     create() {
 
-        /*
+        
 
 
         //this.fpsText = this.add.text(100, 100, '', { font: '30px Arial', fill: '#ffffff' });
@@ -260,7 +260,7 @@ export class Game extends Scene {
             if (this.player.body.velocity.x === 0 && this.player.body.velocity.y === 0) {
                 this.player.anims.play(this.currentIdleAnimation, true)
             }
-        } */
+        } 
 
         
 

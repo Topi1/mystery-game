@@ -28,7 +28,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     create() {
-        this.player.on('animationcomplete', (animation) => {
+        this.on('animationcomplete', (animation) => {
             if (animation.key === 'playerIdle1') {
                 this.idleAnimationCounter++;
                 if (this.idleAnimationCounter >= this.maxIdleRepeats) {
@@ -73,11 +73,11 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                     x: Math.round(point.x),
                     y: Math.round(point.y)
                 }));
-                this.currentPath = path;
+                
+                this.currentPathIndex = 0;
+                this.moveToNextPoint();
         }
 
-            this.currentPathIndex = 0;
-            this.moveToNextPoint();
         } else {
             console.log("NO PATH")
         }
