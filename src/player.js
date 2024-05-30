@@ -25,6 +25,8 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.idleAnimationCounter = 0;
         this.maxIdleRepeats = 3;
         this.currentIdleAnimation = 'playerIdle1'
+
+        //console.log("Player coordinates in constructor:", x, y);
     }
 
     create() {
@@ -42,7 +44,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
 
-    handleCollision = (player, layer) => {
+    /*handleCollision(player, layer){
         // Stop the player
         this.body.setVelocity(0, 0);
         this.targetPosition = null;
@@ -56,11 +58,13 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
 
     startPathfinding(targetX, targetY) {
-        console.log("START PATH")
-        
+        //console.log("START PATH")
+        console.log("NavMesh available:", this.navMesh !== undefined);
         //this.body.setDrag(0, 0);
         const start = { x: this.x, y: this.y };
         const end = { x: targetX, y: targetY };
+
+        console.log("Starting path from", start, "to", end); // Confirm coordinates
 
         if(this.navMesh) {
 
@@ -68,7 +72,8 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             console.log('Path:', path);
 
             
-            if (path) {
+            if (path && path.length > 0) {
+                console.log("Path found:", path);
                 this.currentPath = path.map(point => ({
                     x: Math.round(point.x),
                     y: Math.round(point.y)
@@ -80,34 +85,44 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
         } else {
             console.log("NO PATH")
-        }
+        }  
     }
 
     moveToNextPoint() {
         //const deltaSeconds = delta / 1000
+        //console.log("movetonext")
 
         if (this.currentPathIndex < this.currentPath.length) {
             this.targetPosition = this.currentPath[this.currentPathIndex];
             const deltaX = this.targetPosition.x - this.x;
             const deltaY = this.targetPosition.y - this.y;
+
+            
+
             const distance = Phaser.Math.Distance.Between(this.x, this.y, this.targetPosition.x, this.targetPosition.y);
+            console.log("Delta X:", deltaX, "Delta Y:", deltaY, "Distance:", distance);
 
             if (distance > 8) {
                 const speed = this.playerSpeed;
                 // Calculate normalized direction
                 const normDeltaX = deltaX / distance;
                 const normDeltaY = deltaY / distance;
-                // Apply speed and round to make the movement in whole pixels
-            this.body.setVelocityX(Math.round(normDeltaX * speed));
-            this.body.setVelocityY(Math.round(normDeltaY * speed));
+               // Calculate velocity
+            const velocityX = Math.round(normDeltaX * speed);
+            const velocityY = Math.round(normDeltaY * speed);
+            // Apply speed and round to make the movement in whole pixels
+            this.body.setVelocityX(velocityX);
+            this.body.setVelocityY(velocityY);
             //this.soundManager.playSound("woodWalk")
-
+            console.log("Setting velocity:", velocityX, velocityY);
+            console.log("Expected new position:", this.x + velocityX, this.y + velocityY);
         } 
         else {
             this.body.setVelocity(0, 0);
             // Snap to target and ensure coordinates are integers
             this.x = this.targetPosition.x;
             this.y = this.targetPosition.y;
+            console.log("Player position after moving:", this.x, this.y);
         }
 
         this.adjustPlayerAnimation(deltaX, deltaY);
@@ -120,6 +135,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             this.anims.stop();
             this.setFrame(0);
             //this.body.setDrag(50, 50);
+            console.log("Player position after stopping:", this.x, this.y);
         }
         
     } 
@@ -153,17 +169,19 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.flipX = deltaX < 0;
     }
 
-
+    */
 
 
 
     update() {
         // Add logic to handle player movement, animations, etc.
+        
 
         if (this.targetPosition) {
             const distance = Phaser.Math.Distance.Between(this.x, this.y, this.targetPosition.x, this.targetPosition.y);
             if (distance < 5) {
                 this.moveToNextPoint();
+                
             }
         } else {
             if (this.body.velocity.x === 0 && this.body.velocity.y === 0) {

@@ -91,7 +91,7 @@ export class Game extends Scene {
 
         this.navMesh = this.navMeshPlugin.buildMeshFromTilemap("mesh", map);
 
-        this.navMesh.enableDebug({ color: 0xff0000}) 
+        //this.navMesh.enableDebug({ color: 0xff0000}) 
 
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
         // Set up collision detection for all layers
@@ -120,6 +120,19 @@ export class Game extends Scene {
                 this.currentIdleAnimation = 'playerIdle1';  // Switch back to the first idle animation
             }
         });
+
+
+
+
+        /*this.navMesh.enableDebug(); // Creates a Phaser.Graphics overlay on top of the screen
+        this.navMesh.debugDrawClear(); // Clears the overlay
+        // Visualize the underlying navmesh
+        this.navMesh.debugDrawMesh({
+        drawCentroid: true,
+        drawBounds: true,
+        drawNeighbors: true,
+        drawPortals: true
+        }); */
     }
 
     handleCollision(player, layer) {
