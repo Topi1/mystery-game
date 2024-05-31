@@ -9,7 +9,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
         this.setOrigin(0.5, 0.5);
         this.body.setAllowGravity(false);
-        //this.setPipeline('Light2D');
+        this.setPipeline('Light2D');
 
         this.depth = 9;
         this.scale = 1;
@@ -17,7 +17,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.body.setOffset(5, 70);
         
         this.scene = scene;
-        this.speed = 59;
+        this.playerSpeed = 59;
         this.currentPath = [];
         this.currentPathIndex = 0;
         this.targetPosition = null;
@@ -44,7 +44,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
 
-    /*handleCollision(player, layer){
+    handleCollision(player, layer){
         // Stop the player
         this.body.setVelocity(0, 0);
         this.targetPosition = null;
@@ -96,33 +96,24 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             this.targetPosition = this.currentPath[this.currentPathIndex];
             const deltaX = this.targetPosition.x - this.x;
             const deltaY = this.targetPosition.y - this.y;
-
-            
-
             const distance = Phaser.Math.Distance.Between(this.x, this.y, this.targetPosition.x, this.targetPosition.y);
-            console.log("Delta X:", deltaX, "Delta Y:", deltaY, "Distance:", distance);
 
             if (distance > 8) {
                 const speed = this.playerSpeed;
                 // Calculate normalized direction
                 const normDeltaX = deltaX / distance;
                 const normDeltaY = deltaY / distance;
-               // Calculate velocity
-            const velocityX = Math.round(normDeltaX * speed);
-            const velocityY = Math.round(normDeltaY * speed);
-            // Apply speed and round to make the movement in whole pixels
-            this.body.setVelocityX(velocityX);
-            this.body.setVelocityY(velocityY);
+                // Apply speed and round to make the movement in whole pixels
+            this.body.setVelocityX(Math.round(normDeltaX * speed));
+            this.body.setVelocityY(Math.round(normDeltaY * speed));
             //this.soundManager.playSound("woodWalk")
-            console.log("Setting velocity:", velocityX, velocityY);
-            console.log("Expected new position:", this.x + velocityX, this.y + velocityY);
+
         } 
         else {
             this.body.setVelocity(0, 0);
             // Snap to target and ensure coordinates are integers
             this.x = this.targetPosition.x;
             this.y = this.targetPosition.y;
-            console.log("Player position after moving:", this.x, this.y);
         }
 
         this.adjustPlayerAnimation(deltaX, deltaY);
@@ -135,7 +126,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             this.anims.stop();
             this.setFrame(0);
             //this.body.setDrag(50, 50);
-            console.log("Player position after stopping:", this.x, this.y);
         }
         
     } 
@@ -169,7 +159,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.flipX = deltaX < 0;
     }
 
-    */
+    
 
 
 
