@@ -72,7 +72,7 @@ const config = {
         arcade: {
             gravity: { y: 0 },
             //debug: true,
-            fixedStep: true
+            //fixedStep: true
         },
         
     } 

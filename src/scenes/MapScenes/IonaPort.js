@@ -117,7 +117,9 @@ export class IonaPort extends Scene {
         this.cameras.main.setBounds(0, 0, portMap.widthInPixels + 100, portMap.heightInPixels + 50);
         this.cameras.main.setZoom(1)
 
-        this.cameras.main.startFollow(this.player, true, 1, 1);
+        this.cameras.main.startFollow(this.player, false);
+        this.cameras.main.setDeadzone(100, 100);
+        
 
         
         
@@ -128,6 +130,7 @@ export class IonaPort extends Scene {
             secondLayer,
             thirdLayer,
             fourthLayer,
+            //fifthLayer,
             sixthLayer,
             seventhLayer,
             eigthLayer
@@ -186,8 +189,15 @@ export class IonaPort extends Scene {
         
         //this.player.handleIdle()
         this.player.update()
-        this.darkWater.tilePositionX += 0.3
-        this.darkWater.tilePositionY += 0.3
+        this.darkWater.tilePositionX += 0.1
+        this.darkWater.tilePositionY += 0.1
+
+        const smoothSpeed = 0.05; // Smoothing factor, adjust as needed
+        const targetX = Phaser.Math.Linear(this.cameras.main.scrollX, this.player.x - this.cameras.main.width / 2, smoothSpeed);
+        const targetY = Phaser.Math.Linear(this.cameras.main.scrollY, this.player.y - this.cameras.main.height / 2, smoothSpeed);
+
+        this.cameras.main.scrollX = Math.round(targetX);
+        this.cameras.main.scrollY = Math.round(targetY);
     }
 
 }

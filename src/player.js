@@ -27,6 +27,8 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.currentIdleAnimation = 'playerIdle1'
         this.handleIdle()
 
+        this.inventory = []
+
         //console.log("Player coordinates in constructor:", x, y);
     }
 
@@ -61,7 +63,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     startPathfinding(targetX, targetY) {
         //console.log("START PATH")
         console.log("NavMesh available:", this.navMesh !== undefined);
-        //this.body.setDrag(0, 0);
+        this.body.setDrag(0, 0);
         const start = { x: this.x, y: this.y };
         const end = { x: targetX, y: targetY };
 
@@ -126,7 +128,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             this.body.setVelocity(0, 0);
             this.anims.stop();
             this.setFrame(0);
-            //this.body.setDrag(50, 50);
+            this.body.setDrag(20, 20);
         }
         
     } 
@@ -158,6 +160,22 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     
         // Adjust sprite flipping based on X direction
         this.flipX = deltaX < 0;
+    }
+
+
+    addItem(item) {
+        this.inventory.push(item)
+    }
+
+    removeItem(item) {
+        const index = this.inventory.indexOf(item)
+        if(index > -1) {
+            this.inventory.splice(index, 1)
+        }
+    }
+
+    hasItem(item) {
+        return this.inventory.includes(item)
     }
 
     
