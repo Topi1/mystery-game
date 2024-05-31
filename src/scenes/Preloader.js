@@ -90,11 +90,14 @@ export class Preloader extends Scene
         this.load.image("Hotel_Outside_A3", "tiles/Hotel_Outside_A3.png")
         this.load.image("Hotel_Outside", "tiles/Hotel_Outside.png")
         this.load.image("portTiles", "tiles/portTiles.png")
+        this.load.image("portTiles1", "tiles/portTiles1.png")
+        this.load.image("portTiles2", "tiles/portTiles2.png")
         
 
 
         //maps
         this.load.tilemapTiledJSON("IonaPort", "maps/IonaPort.json")
+        this.load.tilemapTiledJSON("IonaPortUpd", "maps/IonaPortUpd.json")
 
         this.load.tilemapTiledJSON("map", "testtiles")
 

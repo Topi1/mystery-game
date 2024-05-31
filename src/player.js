@@ -99,7 +99,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             const deltaY = this.targetPosition.y - this.y;
             const distance = Phaser.Math.Distance.Between(this.x, this.y, this.targetPosition.x, this.targetPosition.y);
 
-            if (distance > 8) {
+            if (distance > 5) {
                 const speed = this.playerSpeed;
                 // Calculate normalized direction
                 const normDeltaX = deltaX / distance;

@@ -45,49 +45,59 @@ export class IonaPort extends Scene {
         this.leftLantern = this.lights.addLight(150,90,130)
         this.rightLantern = this.lights.addLight(370,90,130)
         this.bigLantern = this.lights.addLight(620,100,160)
+        //this.bigLanternDown = this.lights.addLight(330,360,460)
         
         
         
 
         
 
-        const portMap = this.make.tilemap({ key: "IonaPort" });
+        const portMap = this.make.tilemap({ key: "IonaPortUpd" });
 
+        const groundColliders = portMap.addTilesetImage("groundColliders", "A5_Hotel", 48,48);
         const ground = portMap.addTilesetImage("ground", "A5_Hotel", 48,48);
         const house = portMap.addTilesetImage("house", "A4_Hotel", 48,48);
         const house2 = portMap.addTilesetImage("house2", "Hotel_Bonus", 48,48);
         const house3 = portMap.addTilesetImage("house3", "Hotel_Outside_A3", 48,48);
-        //const house4 = portMap.addTilesetImage("house4", "objectTiles", 48,48);
-        const house5 = portMap.addTilesetImage("house5", "portTiles", 48,48);
+        const house4 = portMap.addTilesetImage("house4", "portTiles2", 48,48);
+        const house5 = portMap.addTilesetImage("house5", "portTiles1", 48,48);
         const others = portMap.addTilesetImage("others", "Hotel_Outside", 48,48);
+        const house6 = portMap.addTilesetImage("house6", "portTiles", 48,48);
 
+
+        const collideLayer = portMap.createLayer("groundColliders", groundColliders).setPipeline("Light2D");
+        collideLayer.depth = 0;
         const firstLayer = portMap.createLayer("ground", ground).setPipeline("Light2D");
-        firstLayer.depth = 0;
+        firstLayer.depth = 1;
         const secondLayer = portMap.createLayer("house", house).setPipeline("Light2D");
-        secondLayer.depth = 1;
+        secondLayer.depth = 2;
         const thirdLayer = portMap.createLayer("house2", house2).setPipeline("Light2D");
-        thirdLayer.depth = 2;
+        thirdLayer.depth = 3;
         const fourthLayer = portMap.createLayer("house3", house3).setPipeline("Light2D");
-        fourthLayer.depth = 3;
-        //const fifthLayer = portMap.createLayer("house4", house4).setPipeline("Light2D");
-        //fifthLayer.depth = 4;
+        fourthLayer.depth = 4;
+        const fifthLayer = portMap.createLayer("house4", house4).setPipeline("Light2D");
+        fifthLayer.depth = 5;
         const sixthLayer = portMap.createLayer("house5", house5).setPipeline("Light2D");
-        sixthLayer.depth = 5;
+        sixthLayer.depth = 6;
         const seventhLayer = portMap.createLayer("others", others).setPipeline("Light2D");
-        seventhLayer.depth = 6;
+        seventhLayer.depth = 7;
+        const eigthLayer = portMap.createLayer("house6", house6).setPipeline("Light2D");
+        eigthLayer.depth = 9;
 
-        //firstLayer.setCollisionByProperty({ collides: true });
+        collideLayer.setCollisionByProperty({ collides: true });
         secondLayer.setCollisionByProperty({ collides: true });
         thirdLayer.setCollisionByProperty({ collides: true });
-        fourthLayer.setCollisionByProperty({ collides: true }); 
+        fourthLayer.setCollisionByProperty({ collides: true });
+        fifthLayer.setCollisionByProperty({ collides: true });
         sixthLayer.setCollisionByProperty({ collides: true }); 
-        seventhLayer.setCollisionByProperty({ collides: true }); 
+        seventhLayer.setCollisionByProperty({ collides: true });
+        eigthLayer.setCollisionByProperty({ collides: true });  
 
         
 
         this.navMesh = this.navMeshPlugin.buildMeshFromTilemap("meshPort", portMap);
 
-        this.darkWater = this.add.tileSprite(320,170,0,0,"darkWater").setOrigin(0.5,0.5)
+        this.darkWater = this.add.tileSprite(320,250,0,0,"darkWater").setOrigin(0.5,0.5)
         this.darkWater.depth = -1
         this.darkWater.flipX
         this.darkWater.setPipeline("Light2D")
@@ -104,7 +114,7 @@ export class IonaPort extends Scene {
         //this.player.body.setOffset(5, 70);
         //this.player.setPipeline("Light2D");
 
-        this.cameras.main.setBounds(0, 0, portMap.widthInPixels + 100, portMap.heightInPixels);
+        this.cameras.main.setBounds(0, 0, portMap.widthInPixels + 100, portMap.heightInPixels + 50);
         this.cameras.main.setZoom(1)
 
         this.cameras.main.startFollow(this.player, true, 1, 1);
@@ -114,12 +124,13 @@ export class IonaPort extends Scene {
 
         // Set up collision detection for all layers
         this.physics.add.collider(this.player, [
-            //firstLayer,
+            collideLayer,
             secondLayer,
             thirdLayer,
             fourthLayer,
             sixthLayer,
-            seventhLayer
+            seventhLayer,
+            eigthLayer
         ], this.player.handleCollision, null, this);  
 
         this.input.on("pointerup", (pointer) => {
