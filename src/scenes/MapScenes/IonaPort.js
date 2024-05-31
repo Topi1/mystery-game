@@ -17,6 +17,10 @@ export class IonaPort extends Scene {
 
     create() {
 
+        this.soundManager = this.game.registry.get('soundManager');
+
+        this.soundManager.setVolume("ferrySound", 0.4)
+
         GameAnimations.create(this)
 
 
@@ -83,8 +87,14 @@ export class IonaPort extends Scene {
 
         this.navMesh = this.navMeshPlugin.buildMeshFromTilemap("meshPort", portMap);
 
+        this.darkWater = this.add.tileSprite(320,170,0,0,"darkWater").setOrigin(0.5,0.5)
+        this.darkWater.depth = -1
+        this.darkWater.flipX
+        this.darkWater.setPipeline("Light2D")
+
         this.player = new Player(this, 650, 150, 'player', 0,  this.navMesh);
         this.player.setPipeline("Light2D")
+        //this.player.postFX.addShadow(0,0,0.06,1)
 
         //this.player = this.physics.add.sprite(650, 160, "player").setOrigin(0.5,0.5)
         //this.player.body.setAllowGravity(false);
@@ -132,7 +142,30 @@ export class IonaPort extends Scene {
         drawPortals: true
         }); */
 
+        this.player.startPathfinding(649, 150)
+
+
+        this.input.on('pointermove', (pointer) => {
+            const worldPoint = pointer.positionToCamera(this.cameras.main); // Convert to world space
+
+        this.checkPathExists(this.player.x, this.player.y, worldPoint.x, worldPoint.y).then(pathExists => {
+            if (pathExists) {
+                this.game.canvas.style.cursor = 'pointer'; // Change to hand cursor
+            } else {
+                this.game.canvas.style.cursor = 'default'; // Revert to default cursor
+            }
+        }).catch(() => {
+            this.game.canvas.style.cursor = 'default'; // Ensure default on error
+        });
+    });
+    
+
         
+    }
+
+    async checkPathExists(startX, startY, endX, endY) {
+        const path = await this.navMesh.findPath({ x: startX, y: startY }, { x: endX, y: endY });
+        return path && path.length > 0;
     }
 
 
@@ -140,8 +173,10 @@ export class IonaPort extends Scene {
 
     update() {
         
-       
+        //this.player.handleIdle()
         this.player.update()
+        this.darkWater.tilePositionX += 0.3
+        this.darkWater.tilePositionY += 0.3
     }
 
 }

@@ -51,6 +51,11 @@ export class Preloader extends Scene
         this.load.video("ferryVid", "videos/ferryVid.mp4")
 
 
+        //IMAGES
+        this.load.image("darkWater", "images/darkWater2.png")
+        
+
+
         //LOGOS
 
         this.load.atlas("TJlogo", "TopiLogo.png", "TopiLogo.json")

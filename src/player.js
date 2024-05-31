@@ -11,7 +11,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.body.setAllowGravity(false);
         this.setPipeline('Light2D');
 
-        this.depth = 9;
+        this.depth = 8;
         this.scale = 1;
         this.setSize(40, 25);
         this.body.setOffset(5, 70);
@@ -25,11 +25,12 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.idleAnimationCounter = 0;
         this.maxIdleRepeats = 3;
         this.currentIdleAnimation = 'playerIdle1'
+        this.handleIdle()
 
         //console.log("Player coordinates in constructor:", x, y);
     }
 
-    create() {
+    handleIdle() {
         this.on('animationcomplete', (animation) => {
             if (animation.key === 'playerIdle1') {
                 this.idleAnimationCounter++;
@@ -44,7 +45,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
 
-    handleCollision(player, layer){
+    handleCollision = (player, layer) =>{
         // Stop the player
         this.body.setVelocity(0, 0);
         this.targetPosition = null;
@@ -165,7 +166,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
     update() {
         // Add logic to handle player movement, animations, etc.
-        
+        //this.handleIdle()
 
         if (this.targetPosition) {
             const distance = Phaser.Math.Distance.Between(this.x, this.y, this.targetPosition.x, this.targetPosition.y);

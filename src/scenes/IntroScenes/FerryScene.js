@@ -10,9 +10,9 @@ export class FerryScene extends Scene {
 
     create() {
 
-        this.soundManager = new SoundController(this);
+        this.soundManager = this.game.registry.get('soundManager');
         
-        this.soundManager.addSounds();
+        
         this.soundManager.playSound('ferrySound');
         
 
@@ -48,8 +48,8 @@ export class FerryScene extends Scene {
             delay: 15000,
             onComplete: () => {
                 this.time.delayedCall(2000, () => {
-                    this.soundManager.stopSound('ferrySound');
-                    this.scene.start('Game')
+                    //this.soundManager.stopSound('ferrySound');
+                    this.scene.start('IonaPort')
                 }, [], this)
             }
         });
