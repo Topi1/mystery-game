@@ -23,10 +23,14 @@ export class IonaPort extends Scene {
 
         GameAnimations.create(this)
 
+        this.time.delayedCall(100, () => {
+            this.scene.get("IngameUI").showUI()
+        }, [], this)
+
 
         this.blackOverlay = this.add.graphics({ fillStyle: { color: 0x000000 } });
         this.blackOverlay.fillRect(0, 0, this.sys.game.config.width + 500, this.sys.game.config.height);
-        this.blackOverlay.depth = 10
+        this.blackOverlay.depth = 30
         this.tweens.add({
             targets: this.blackOverlay,
             alpha: 0,
@@ -117,7 +121,7 @@ export class IonaPort extends Scene {
         this.cameras.main.setBounds(0, 0, portMap.widthInPixels + 100, portMap.heightInPixels + 50);
         this.cameras.main.setZoom(1)
 
-        this.cameras.main.startFollow(this.player, false);
+        this.cameras.main.startFollow(this.player, true);
         this.cameras.main.setDeadzone(100, 100);
         
 

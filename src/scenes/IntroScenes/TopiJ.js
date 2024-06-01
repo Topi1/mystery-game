@@ -10,6 +10,7 @@ export class TopiJ extends Scene
 
     create ()
     {
+        this.scene.start('IngameUI');
         //AUDIO
         this.soundManager = this.game.registry.get('soundManager');
         this.soundManager.playSound('introSong');

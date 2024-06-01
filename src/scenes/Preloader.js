@@ -115,6 +115,7 @@ export class Preloader extends Scene
         this.load.spritesheet("menuButton", "UI/menuBtn.png", {frameWidth: 132, frameHeight: 38})
         this.load.spritesheet("menuIcons", "UI/menuIcons.png", {frameWidth: 38, frameHeight: 38})
         this.load.image("plusIcon", "UI/plusIcon.png")
+        //this.load.image("inventoryIcon", "UI/inventoryIcon.png")
 
     }
 

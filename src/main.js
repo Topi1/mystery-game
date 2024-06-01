@@ -9,6 +9,7 @@ import { TitleScreen } from './scenes/IntroScenes/TitleScreen';
 import { MainMenu } from './scenes/IntroScenes/MainMenu';
 import { IntroTextScene } from './scenes/IntroScenes/IntroTextScene';
 import { FerryScene } from './scenes/IntroScenes/FerryScene';
+import { IngameUI } from './scenes/UIscenes/IngameUI';
 import { IonaPort } from './scenes/MapScenes/IonaPort';
 import { Preloader } from './scenes/Preloader';
 import  PhaserNavMeshPlugin  from "phaser-navmesh"
@@ -62,9 +63,11 @@ const config = {
         MainMenu,
         IntroTextScene,
         FerryScene,
+        
         IonaPort,
         Game,
-        GameOver
+        GameOver,
+        IngameUI
     ],
     physics: {
         
