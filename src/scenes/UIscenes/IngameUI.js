@@ -8,6 +8,9 @@ export class IngameUI extends Scene {
 
     preload() {
         this.load.image("inventoryIcon", "assets/UI/inventoryIcon.png")
+        this.load.image("mainIcon", "assets/UI/mainIcon2.png")
+
+        this.load.bitmapFont('baseFontUI', 'assets/fonts/baseFont_0.png', 'assets/fonts/baseFont.fnt')
     }
 
     create() {
@@ -17,21 +20,40 @@ export class IngameUI extends Scene {
         this.inventoryDisplay = new InventoryDisplay(this, 10, 10);
         this.uiContainer.add(this.inventoryDisplay);
 
+        //BG
+        this.bg = this.add.graphics()
+        this.bg.fillStyle(0x1e3737);
+        this.bg.alpha = 0.4
+        this.bg.fillRect(530, 0, 200, 50);
+        this.bg.depth = 21
+        this.uiContainer.add(this.bg);
+
         //Inventory Button
-        this.inventoryButton = this.add.sprite(520, 20, "inventoryIcon").setFrame(0)
+        this.inventoryButton = this.add.sprite(560, 20, "inventoryIcon").setFrame(0)
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => {
             this.toggleInventory();
-        });
-        this.uiContainer.add(this.inventoryButton);  
+        })
+        .on('pointerover', () => this.inventoryText.setVisible(true))
+        .on('pointerout', () => this.inventoryText.setVisible(false));
+        this.uiContainer.add(this.inventoryButton);
+        
+        this.inventoryText = this.add.bitmapText(530,50,"baseFontUI","Inventory",16).setVisible(false)
+        this.uiContainer.add(this.inventoryText);
 
         // Settings Button
-        this.settingsButton = this.add.text(550, 10, 'Settings', { fontSize: '16px', fill: '#fff' })
+        this.mainButton = this.add.sprite(610, 20, "mainIcon").setFrame(0)
             .setInteractive({ useHandCursor: true })
             .on('pointerdown', () => {
                 this.showSettings();
-            });
-        this.uiContainer.add(this.settingsButton);
+            })
+            .on('pointerover', () => this.mainText.setVisible(true))
+            .on('pointerout', () => this.mainText.setVisible(false));
+            
+        this.uiContainer.add(this.mainButton);
+
+        this.mainText = this.add.bitmapText(595,50,"baseFontUI","Menu",16).setVisible(false)
+        this.uiContainer.add(this.mainText);
           
 
             // Listen for updates from game scenes
@@ -66,9 +88,9 @@ export class IngameUI extends Scene {
     }
 
 
-    showSettings() {
+    showMain() {
         // Code to display settings, could toggle visibility of a settings panel
-        console.log('Settings button clicked');
+        console.log('Main button clicked');
     }
 
 
