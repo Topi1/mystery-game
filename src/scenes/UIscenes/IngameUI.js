@@ -7,8 +7,9 @@ export class IngameUI extends Scene {
     }
 
     preload() {
-        this.load.image("inventoryIcon", "assets/UI/inventoryIcon.png")
-        this.load.image("mainIcon", "assets/UI/mainIcon2.png")
+        this.load.spritesheet("inventoryIcon", "assets/UI/invIcon.png", {frameWidth: 48, frameHeight: 48})
+        this.load.spritesheet("mainIcon", "assets/UI/menuIcon.png", {frameWidth: 48, frameHeight: 48})
+        this.load.spritesheet("speakToIcon", "assets/UI/speakTo.png", {frameWidth: 48, frameHeight: 48})
 
         this.load.bitmapFont('baseFontUI', 'assets/fonts/baseFont_0.png', 'assets/fonts/baseFont.fnt')
     }
@@ -27,6 +28,20 @@ export class IngameUI extends Scene {
         this.bg.fillRect(530, 0, 200, 50);
         this.bg.depth = 21
         this.uiContainer.add(this.bg);
+
+        //Speak To Button
+        this.speakButton = this.add.sprite(500, 20, "speakToIcon").setFrame(0)
+        .setInteractive({ useHandCursor: true })
+        .on('pointerdown', () => {
+            this.toggleInventory();
+        })
+        .on('pointerover', () => this.speakToText.setVisible(true))
+        .on('pointerout', () => this.speakToText.setVisible(false));
+        this.uiContainer.add(this.speakButton);
+        
+        this.speakToText = this.add.bitmapText(500,50,"baseFontUI","Speak to",16).setVisible(false)
+        this.uiContainer.add(this.speakToText);
+
 
         //Inventory Button
         this.inventoryButton = this.add.sprite(560, 20, "inventoryIcon").setFrame(0)

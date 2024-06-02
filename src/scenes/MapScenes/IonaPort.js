@@ -122,7 +122,7 @@ export class IonaPort extends Scene {
         this.cameras.main.setZoom(1)
 
         this.cameras.main.startFollow(this.player, true);
-        this.cameras.main.setDeadzone(100, 100);
+        this.cameras.main.setDeadzone(100, 150);
         
 
         

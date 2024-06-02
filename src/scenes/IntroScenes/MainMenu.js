@@ -34,6 +34,10 @@ export class MainMenu extends Scene
             }
         });
 
+
+        
+
+
         this.topiText = this.add.bitmapText(80, 15, "baseFont", "Topi Järvinen 2024", 16).setOrigin(0.5,0.5)
         this.topiText.depth = 6
 
@@ -55,7 +59,7 @@ export class MainMenu extends Scene
         
         this.walkingPlayer.anims.play("walk")
 
-        this.light = this.lights.addLight(310,95,220)
+        this.light = this.lights.addLight(310,95,180)
         this.light.depth = 3
 
 
