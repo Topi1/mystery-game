@@ -14,6 +14,8 @@ export class IngameUI extends Scene {
         this.load.spritesheet("speakToIcon", "assets/UI/speakTo.png", {frameWidth: 48, frameHeight: 48})
 
         this.load.bitmapFont('baseFontUI', 'assets/fonts/baseFont_0.png', 'assets/fonts/baseFont.fnt')
+
+        this.load.spritesheet("menuButton1", "assets/UI/menuBtn.png", {frameWidth: 132, frameHeight: 38})
     }
 
     create() {
@@ -29,6 +31,7 @@ export class IngameUI extends Scene {
         //BG
         this.menuBG = this.add.sprite(558,22,"menuBG")
         this.menuBG.alpha = 0.3
+        
         this.menuBG.setInteractive().on("pointerover", () => {
             //this.menuBG.alpha = 0.6
         })
@@ -51,6 +54,7 @@ export class IngameUI extends Scene {
         })
         .on('pointerover', () => {this.speakToText.setVisible(true), this.speakButton.setFrame(1)})
         .on('pointerout', () => {this.speakToText.setVisible(false), this.speakButton.setFrame(0)});
+        this.speakButton.depth = 21
         this.uiContainer.add(this.speakButton);
         
         this.speakToText = this.add.bitmapText(480,47,"baseFontUI","Speak to",16).setVisible(false)
@@ -65,19 +69,22 @@ export class IngameUI extends Scene {
         })
         .on('pointerover', () => {this.inventoryText.setVisible(true), this.inventoryButton.setFrame(1)})
         .on('pointerout', () => {this.inventoryText.setVisible(false), this.inventoryButton.setFrame(0)});
+        this.inventoryButton.depth = 21
         this.uiContainer.add(this.inventoryButton);
         
         this.inventoryText = this.add.bitmapText(525,47,"baseFontUI","Inventory",16).setVisible(false)
         this.uiContainer.add(this.inventoryText);
 
-        // Settings Button
+        // Menu Button
         this.mainButton = this.add.sprite(610, 20, "mainIcon").setFrame(0)
             .setInteractive({ useHandCursor: true })
             .on('pointerdown', () => {
                 this.showMain();
+                this.mainText.setVisible(false)
             })
             .on('pointerover', () => {this.mainText.setVisible(true), this.mainButton.setFrame(1)})
             .on('pointerout', () => {this.mainText.setVisible(false), this.mainButton.setFrame(0)});
+        this.mainButton.depth = 21
             
         this.uiContainer.add(this.mainButton);
 
@@ -121,7 +128,17 @@ export class IngameUI extends Scene {
         // Code to display settings, could toggle visibility of a settings panel
         this.popupMenu.toggleVisibility()
         console.log('Main button clicked');
+        
     }
+
+    toggleUIInput(enable) {
+        this.uiContainer.list.forEach(child => {
+            if (child.input && child.setInteractive) {
+                child.input.enabled = enable; // Only toggle input if it exists
+            }
+        });
+    }
+    
 
 
 }
