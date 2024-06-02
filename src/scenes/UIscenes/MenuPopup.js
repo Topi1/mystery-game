@@ -1,5 +1,6 @@
 import Phaser from "phaser";
 
+
 export class PopupMenu extends Phaser.GameObjects.Container {
     constructor(scene, x, y) {
         super(scene, scene.cameras.main.width / 2, scene.cameras.main.height / 2)
@@ -12,10 +13,30 @@ export class PopupMenu extends Phaser.GameObjects.Container {
         
     }
 
+    setSaveGamePopup(saveGamePopup) {
+        this.saveGamePopup = saveGamePopup;
+    }
 
+    setLoadGamePopup(loadGamePopup) {
+        this.loadGamePopup = loadGamePopup;
+    }
+
+    setSettingsPopup(settingsPopup) {
+        this.settingsPopup = settingsPopup;
+    }
+    setHowPlayPopup(howplayPopup) {
+        this.howplayPopup = howplayPopup;
+    }
+
+    setExitPopup(exitPopup) {
+        this.exitPopup = exitPopup;
+    }
 
     createMenuItems() {
         const { width, height } = this.scene.sys.game.config;
+
+        
+        
 
         this.inputBlocker = this.scene.add.rectangle(0, 0, this.scene.cameras.main.width, this.scene.cameras.main.height, 0x000000, 0.0)
             .setOrigin(0.5, 0.5)
@@ -45,6 +66,9 @@ export class PopupMenu extends Phaser.GameObjects.Container {
         this.saveGameBtn = this.scene.add.sprite(240,-110, "menuButton1").setFrame(0).setInteractive({ useHandCursor: true })
         .on('pointerover', () => {this.saveGameBtn.setFrame(1), this.saveGameBtn.depth = 32})
         .on('pointerout', () => {this.saveGameBtn.setFrame(0), this.saveGameBtn.depth = 31})
+        .on('pointerdown', () => {
+            this.saveGamePopup.toggleVisibility()
+        })
         this.saveGameBtn.depth = 31
         this.add(this.saveGameBtn)
 
@@ -55,6 +79,9 @@ export class PopupMenu extends Phaser.GameObjects.Container {
         this.loadGameBtn = this.scene.add.sprite(240,-76, "menuButton1").setFrame(0).setInteractive({ useHandCursor: true })
         .on('pointerover', () => {this.loadGameBtn.setFrame(1), this.loadGameBtn.depth = 32})
         .on('pointerout', () => {this.loadGameBtn.setFrame(0), this.loadGameBtn.depth = 31})
+        .on('pointerdown', () => {
+            this.loadGamePopup.toggleVisibility()
+        })
         this.loadGameBtn.depth = 31
         this.add(this.loadGameBtn)
 
@@ -65,6 +92,9 @@ export class PopupMenu extends Phaser.GameObjects.Container {
         this.settingsBtn = this.scene.add.sprite(240,-42, "menuButton1").setFrame(0).setInteractive({ useHandCursor: true })
         .on('pointerover', () => {this.settingsBtn.setFrame(1), this.settingsBtn.depth = 32})
         .on('pointerout', () => {this.settingsBtn.setFrame(0), this.settingsBtn.depth = 31})
+        .on('pointerdown', () => {
+            this.settingsPopup.toggleVisibility()
+        })
         this.settingsBtn.depth = 31
         this.add(this.settingsBtn)
 
@@ -75,6 +105,9 @@ export class PopupMenu extends Phaser.GameObjects.Container {
         this.howplayBtn = this.scene.add.sprite(240,-8, "menuButton1").setFrame(0).setInteractive({ useHandCursor: true })
         .on('pointerover', () => {this.howplayBtn.setFrame(1), this.howplayBtn.depth = 32})
         .on('pointerout', () => {this.howplayBtn.setFrame(0), this.howplayBtn.depth = 31})
+        .on('pointerdown', () => {
+            this.howplayPopup.toggleVisibility()
+        })
         this.howplayBtn.depth = 31
         this.add(this.howplayBtn)
 
@@ -85,6 +118,9 @@ export class PopupMenu extends Phaser.GameObjects.Container {
         this.exitBtn = this.scene.add.sprite(240,26, "menuButton1").setFrame(0).setInteractive({ useHandCursor: true })
         .on('pointerover', () => {this.exitBtn.setFrame(1), this.exitBtn.depth = 32})
         .on('pointerout', () => {this.exitBtn.setFrame(0), this.exitBtn.depth = 31})
+        .on('pointerdown', () => {
+            this.exitPopup.toggleVisibility()
+        })
         this.exitBtn.depth = 31
         this.add(this.exitBtn)
 

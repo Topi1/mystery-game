@@ -16,7 +16,7 @@ export class IntroTextScene extends Scene {
 
         this.soundManager.setVolume("typeWriter", 0.4)
 
-        this.input.enabled = false
+        //this.input.enabled = false
 
         this.content = "It is late evening in Scotland.\n\nYou are in Fionnphort, waiting for a ferry.\n\nYour destination is The Isle of Iona.\n\nIt's a tiny island off the southwest\ncoast of Mull in the Inner Hebrides.\n\nWhy are you going there?\n\nI will tell you soon, wait a moment...";
         this.label = this.add.bitmapText(320, 150, "baseFont", "", 16).setOrigin(0.5,0.5)
@@ -87,7 +87,7 @@ export class IntroTextScene extends Scene {
             console.log("Transitioning to the next scene or doing another action.");
             this.newContent = "Press anywhere to continue."
             this.typewriteText(this.newContent, () => {
-                this.input.enabled = true
+                //this.input.enabled = true
             })
             // Example: this.scene.start('NextScene');
         }, [], this);

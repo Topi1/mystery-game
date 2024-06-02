@@ -9,15 +9,16 @@ export class SettingsPopup extends Phaser.GameObjects.Container {
         this.createInputBlocker()
         this.createPopup();
         this.setVisible(false);
+        this.depth = 40
     }
 
     createPopup(){
         const bg = this.scene.add.graphics();
-        bg.fillStyle(0x1e3737, 0.8);
+        bg.fillStyle(0x1e3737, 0.5);
         bg.fillRect(-150, -100, 300, 200);
         this.add(bg);
 
-        const settingsText = this.scene.add.bitmapText(0, -80, "baseFont", "Settings", 32).setOrigin(0.5);
+        const settingsText = this.scene.add.bitmapText(0, -80, "baseFontUI", "Settings", 32).setOrigin(0.5);
         this.add(settingsText);
 
         const closeButton = this.scene.add.text(120, -100, 'X', {
@@ -64,7 +65,7 @@ export class SettingsPopup extends Phaser.GameObjects.Container {
     }
 
     createMuteButton() {
-        const buttonText = this.scene.add.bitmapText(0, 15, "baseFont", "Mute", 24).setOrigin(0.5,0.5)
+        const buttonText = this.scene.add.bitmapText(0, 15, "baseFontUI", "Mute", 24).setOrigin(0.5,0.5)
         buttonText.setInteractive({ useHandCursor: true });
         buttonText.on('pointerdown', () => {
             const isMuted = this.scene.game.sound.mute;
@@ -75,7 +76,7 @@ export class SettingsPopup extends Phaser.GameObjects.Container {
     }
 
     createFullscreenButton() {
-        const fullScreenButton = this.scene.add.bitmapText(0, -15, "baseFont", "Fullscreen[ON]", 24).setOrigin(0.5,0.5)
+        const fullScreenButton = this.scene.add.bitmapText(0, -15, "baseFontUI", "Fullscreen[ON]", 24).setOrigin(0.5,0.5)
         fullScreenButton.setInteractive({ useHandCursor: true })
         fullScreenButton.on("pointerup", () => {
             if(this.scene.scale.isFullscreen) {
@@ -91,7 +92,7 @@ export class SettingsPopup extends Phaser.GameObjects.Container {
 
     createInputBlocker() {
         // Create an invisible background for input blocking
-        this.inputBlocker = this.scene.add.rectangle(0, 0, this.scene.cameras.main.width, this.scene.cameras.main.height, 0x000000, 0.5)
+        this.inputBlocker = this.scene.add.rectangle(0, 0, this.scene.cameras.main.width, this.scene.cameras.main.height, 0x000000, 0.0)
             .setOrigin(0.5, 0.5)
             .setInteractive()
             .on('pointerdown', (pointer, localX, localY, event) => {

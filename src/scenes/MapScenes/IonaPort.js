@@ -16,6 +16,10 @@ export class IonaPort extends Scene {
     }
 
     create() {
+        this.scene.get("IngameUI").events.on('quit_requested', () => {
+            console.log("quit")
+            this.scene.start('TitleScreen');
+        });
 
         this.soundManager = this.game.registry.get('soundManager');
 

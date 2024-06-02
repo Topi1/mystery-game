@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 
-export class HowToPlayPopup extends Phaser.GameObjects.Container {
+export class SaveGamePopup extends Phaser.GameObjects.Container {
     constructor(scene, x, y) {
         super(scene, x, y);
 
@@ -20,7 +20,7 @@ export class HowToPlayPopup extends Phaser.GameObjects.Container {
         bg.fillRect(-150, -100, 300, 200);
         this.add(bg);
 
-        const settingsText = this.scene.add.bitmapText(0, -80, "baseFontUI", "How To Play", 32).setOrigin(0.5);
+        const settingsText = this.scene.add.bitmapText(0, -80, "baseFontUI", "Save Game", 32).setOrigin(0.5);
         this.add(settingsText);
 
         const closeButton = this.scene.add.text(120, -100, 'X', {

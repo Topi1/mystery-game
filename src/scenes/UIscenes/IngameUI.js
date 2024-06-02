@@ -1,5 +1,10 @@
 import { Scene } from 'phaser';
 import { PopupMenu } from './MenuPopup';
+import { SaveGamePopup } from './SaveGamePopup';
+import { LoadGamePopup } from './LoadGamePopup';
+import { SettingsPopup } from './SettingsPopup';
+import { HowToPlayPopup } from './HowToPlayPopup';
+import { ExitGamePopup } from './ExitGamePopup';
 
 export class IngameUI extends Scene {
     constructor() {
@@ -14,6 +19,7 @@ export class IngameUI extends Scene {
         this.load.spritesheet("speakToIcon", "assets/UI/speakTo.png", {frameWidth: 48, frameHeight: 48})
 
         this.load.bitmapFont('baseFontUI', 'assets/fonts/baseFont_0.png', 'assets/fonts/baseFont.fnt')
+        //this.load.bitmapFont('baseFont', 'assets/fonts/baseFont_0.png', 'assets/fonts/baseFont.fnt')
 
         this.load.spritesheet("menuButton1", "assets/UI/menuBtn.png", {frameWidth: 132, frameHeight: 38})
     }
@@ -21,7 +27,27 @@ export class IngameUI extends Scene {
     create() {
         // Inventory Display Setup
 
-        this.popupMenu = new PopupMenu(this, 300, 200)
+       
+
+        this.popupMenu = new PopupMenu(this, 320, 170)
+        this.events.on('toggle_menu', () => {
+            this.popupMenu.toggleVisibility();
+        });
+
+        this.settingsPopup = new SettingsPopup(this, 320, 170)
+        this.popupMenu.setSettingsPopup(this.settingsPopup);
+
+        this.saveGamePopup = new SaveGamePopup(this, 320, 170)
+        this.popupMenu.setSaveGamePopup(this.saveGamePopup)
+
+        this.loadGamePopup = new LoadGamePopup(this, 320, 170)
+        this.popupMenu.setLoadGamePopup(this.loadGamePopup)
+        
+        this.howplayPopup = new HowToPlayPopup(this, 320, 170)
+        this.popupMenu.setHowPlayPopup(this.howplayPopup)
+
+        this.exitPopup = new ExitGamePopup(this, 320, 170)
+        this.popupMenu.setExitPopup(this.exitPopup)
 
         this.uiContainer = this.add.container(0, 0).setDepth(20);
         
@@ -38,7 +64,7 @@ export class IngameUI extends Scene {
         .on("pointerout", () => {
             //this.menuBG.alpha = 0.2
         })
-
+        this.uiContainer.add(this.menuBG)
         /*this.bg = this.add.graphics()
         this.bg.fillStyle(0x1e3737);
         this.bg.alpha = 0.4

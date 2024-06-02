@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 
-export class HowToPlayPopup extends Phaser.GameObjects.Container {
+export class ExitGamePopup extends Phaser.GameObjects.Container {
     constructor(scene, x, y) {
         super(scene, x, y);
 
@@ -20,8 +20,11 @@ export class HowToPlayPopup extends Phaser.GameObjects.Container {
         bg.fillRect(-150, -100, 300, 200);
         this.add(bg);
 
-        const settingsText = this.scene.add.bitmapText(0, -80, "baseFontUI", "How To Play", 32).setOrigin(0.5);
+        const settingsText = this.scene.add.bitmapText(0, -80, "baseFontUI", "Quit Game", 32).setOrigin(0.5);
         this.add(settingsText);
+
+        const sureText = this.scene.add.bitmapText(0, -35, "baseFontUI", "Are you sure you want to quit?\nAll the unsaved progress will be lost.", 16).setOrigin(0.5);
+        this.add(sureText);
 
         const closeButton = this.scene.add.text(120, -100, 'X', {
             font: '34px Arial',
@@ -31,6 +34,20 @@ export class HowToPlayPopup extends Phaser.GameObjects.Container {
             this.setVisible(false)
         })
         this.add(closeButton);
+
+        this.yesButton = this.scene.add.rectangle(0,50, 100, 34, 0x1e3737).setInteractive({ useHandCursor: true })
+        .on('pointerdown', () => {
+            this.toggleVisibility()
+            this.scene.events.emit('toggle_menu');
+            this.scene.hideUI()
+            this.scene.events.emit('quit_requested');
+            //this.scene.scene.start("TitleScreen")
+        })
+        this.add(this.yesButton)
+
+        this.yesText = this.scene.add.bitmapText(0, 0, "baseFontUI", "YES", 32)
+        Phaser.Display.Align.In.Center(this.yesText, this.yesButton);
+        this.add(this.yesText)
     }
 
     createInputBlocker() {

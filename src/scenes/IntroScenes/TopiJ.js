@@ -10,7 +10,7 @@ export class TopiJ extends Scene
 
     create ()
     {
-        this.scene.start('IngameUI');
+        //this.scene.start('IngameUI');
         //AUDIO
         this.soundManager = this.game.registry.get('soundManager');
         this.soundManager.playSound('introSong');
@@ -43,10 +43,15 @@ export class TopiJ extends Scene
         }, [], this);
     
 
-        /*this.input.once('pointerdown', () => {
+        
 
-            this.scene.start('MainMenu');
+        this.escKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
+    }
 
-        }); */
+    update() {
+        if (this.escKey.isDown) {
+            //this.soundManager.stopSound('introSong'); // Stop the intro song
+            this.scene.start('TitleScreen'); // Change to the next scene
+        }
     }
 }
