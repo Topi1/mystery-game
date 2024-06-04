@@ -5,7 +5,13 @@
 <h3>What is it?</h3>
 <br/>
 "Take My Hand ?" is going to be an oldschool Point & Click adventure/horror game, playable on browser. <br/>
-It is going to have chilling atmosphere and fun puzzles. <br/>
+It is going to have chilling atmosphere and fun puzzles. <br/><br/>
+
+I am creating everything by myself, code, UI, characters, levels, story etc. Only the environment tilesets are not made by me.<br/><br/>
+
+There is not much to play yet. Intro scenes and the UI are almost ready. The first gameplay map is also ready.<br/><br/>
+
+Next things to do are to smooth player movement and to develop inventory and dialogue systems.
 
 <br/><br/>
 
